@@ -28,7 +28,7 @@ Clone your fork locally. Do not clone the original repository unless you plan to
 
 ```shell
 git clone https://github.com/hugodessomme/im-jobboard
-cd skateshop
+cd im-jobboard
 ```
 
 ### Install dependencies
