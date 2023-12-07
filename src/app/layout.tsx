@@ -24,7 +24,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang={siteConfig.lang} className="scroll-smooth">
-      <body className={`font-sans ${fontSans.variable}`}>{children}</body>
+      <body
+        className={`font-sans ${fontSans.variable} bg-gray-2 text-gray-11 dark:bg-dark-gray-2 dark:text-dark-gray-11`}
+      >
+        {children}
+      </body>
     </html>
   )
 }
