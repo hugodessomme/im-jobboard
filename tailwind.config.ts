@@ -1,7 +1,6 @@
 import * as radixColors from "@radix-ui/colors"
 import { type Config } from "tailwindcss"
-import * as colors from "tailwindcss/colors"
-import { fontFamily } from "tailwindcss/defaultTheme"
+import { black, white } from "tailwindcss/colors"
 
 function generateColorScale(scale: Record<string, string>, prefix: string) {
   const arrByStep = Object.entries(scale).map((color) => {
@@ -33,8 +32,8 @@ export default {
     colors: {
       current: "currentColor",
       transparent: "transparent",
-      black: colors.black,
-      white: colors.white,
+      black,
+      white,
       blue: generateColorScale(radixColors.blue, "blue"),
       "dark-blue": generateColorScale(radixColors.blueDark, "blue"),
       gray: generateColorScale(radixColors.gray, "gray"),
