@@ -25,8 +25,8 @@ function SelectLang() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <button
-          type="button"
+        <Button
+          variant="outline"
           role="combobox"
           aria-expanded={open}
           className="flex w-28 items-center justify-between"
@@ -36,7 +36,7 @@ function SelectLang() {
               ?.label
           }
           <ChevronsUpDownIcon className="h-4 w-4 shrink-0" />
-        </button>
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
