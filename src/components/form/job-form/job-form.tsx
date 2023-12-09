@@ -36,7 +36,7 @@ function JobForm() {
             control={form.control}
             name="search"
             render={({ field }) => (
-              <FormItem className="space-y-0">
+              <FormItem className="flex-1 space-y-0">
                 <FormLabel className="sr-only">
                   Enter a job title, keyword or company
                 </FormLabel>
@@ -52,7 +52,7 @@ function JobForm() {
                       placeholder="Job title, keyword, company"
                       title="Enter a job title, keyword or company"
                       autoComplete="off"
-                      className="w-[29.5rem] border-none bg-gray-1 pl-10 focus-visible:ring-0 dark:bg-dark-gray-1"
+                      className="border-none bg-transparent pl-10 focus-visible:ring-0 dark:bg-transparent"
                       {...field}
                     />
                   </FormControl>
