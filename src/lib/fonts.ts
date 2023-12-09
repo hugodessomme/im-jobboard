@@ -1,7 +1,3 @@
-import { Epilogue as FontSans } from "next/font/google"
+import { GeistSans as FontSans } from "geist/font/sans"
 
-export const fontSans = FontSans({
-  subsets: ["latin"],
-  weight: ["400", "700", "800", "900"],
-  variable: "--font-sans",
-})
+export const fontSans = FontSans
