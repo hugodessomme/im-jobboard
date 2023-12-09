@@ -7,7 +7,7 @@ import { JobForm } from "@/components/form/job-form"
 
 function SearchBar() {
   return (
-    <div className="border-b border-gray-6 bg-gray-1 py-4 shadow-sm dark:border-dark-gray-6 dark:bg-dark-gray-1">
+    <div className="relative border-gray-6 bg-gray-1 py-4 shadow-sm dark:border-dark-gray-6 dark:bg-dark-gray-1">
       <div className="container">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-x-10">
@@ -21,7 +21,9 @@ function SearchBar() {
               </span>
             </Link>
 
-            <JobForm />
+            <div className="w-[29.5rem]">
+              <JobForm />
+            </div>
           </div>
 
           <ul className="flex gap-x-2">
