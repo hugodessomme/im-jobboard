@@ -5,18 +5,18 @@ import { Heading } from "@/components/ui/heading"
 
 // TODO: query real data
 const jobs = [
-  { label: "Développeur web", value: 45904 },
-  { label: "Ingénieur logiciel", value: 74875 },
-  { label: "Analyste de données", value: 61391 },
-  { label: "Spécialiste cybersécurité", value: 50364 },
-  { label: "Gestionnaire de projet", value: 43359 },
-  { label: "Infirmier/infirmière", value: 93046 },
-  { label: "Développeur full stack", value: 4339 },
-  { label: "Analyste financier", value: 18599 },
-  { label: "Technicien informatique", value: 50963 },
-  { label: "Spécialiste marketing", value: 20079 },
-  { label: "Ingénieur DevOps", value: 28200 },
-  { label: "Ressources humaines", value: 16627 },
+  { label: "Web Developer", value: 45904 },
+  { label: "Software Engineer", value: 74875 },
+  { label: "Data Analyst", value: 61391 },
+  { label: "Cybersecurity Specialist", value: 50364 },
+  { label: "Project Manager", value: 43359 },
+  { label: "Nurse", value: 93046 },
+  { label: "Full Stack Developer", value: 4339 },
+  { label: "Financial Analyst", value: 18599 },
+  { label: "IT Technician", value: 50963 },
+  { label: "Marketing Specialist", value: 20079 },
+  { label: "DevOps Engineer", value: 28200 },
+  { label: "Human Resources", value: 16627 },
 ]
 
 export function MostPopularJobs() {
@@ -27,11 +27,11 @@ export function MostPopularJobs() {
           Most Popular Jobs
         </Heading>
 
-        <ul className="-m-6 grid grid-flow-col grid-cols-4 grid-rows-3 gap-x-6">
+        <ul className="-m-6 grid grid-flow-col grid-cols-4 grid-rows-3 gap-4">
           {jobs.map((job) => (
             <li
               key={job.label}
-              className="group relative p-6 transition-shadow hover:shadow-lg"
+              className="group relative bg-gray-2 p-6 transition-shadow hover:shadow-lg dark:bg-dark-gray-2"
             >
               <Heading
                 as="h3"
