@@ -69,16 +69,12 @@ export function Hero() {
                 <div className="flex items-center gap-x-5 rounded-md bg-gray-1 p-5 shadow-lg dark:bg-dark-gray-1">
                   <div
                     className={cn(
-                      "flex h-16 w-16 items-center justify-center rounded-md bg-blue-3 dark:bg-dark-blue-3",
-                      item.active && "bg-blue-10 dark:bg-dark-blue-10"
+                      "flex h-16 w-16 items-center justify-center rounded-md bg-blue-3 text-blue-9 dark:bg-dark-blue-3 dark:text-dark-blue-9",
+                      item.active &&
+                        "bg-blue-10 text-gray-1 dark:bg-dark-blue-10 dark:text-dark-gray-1"
                     )}
                   >
-                    <Icon
-                      className={cn(
-                        "h-7 w-7 text-blue-10 dark:text-dark-blue-10",
-                        item.active && "text-gray-1 dark:text-dark-gray-1"
-                      )}
-                    />
+                    <Icon className="h-7 w-7" />
                   </div>
                   <div>
                     <p>
