@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { BriefcaseIcon, Building2Icon, UsersRoundIcon } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn, formatNumber } from "@/lib/utils"
 import { Heading } from "@/components/ui/heading"
 import { JobForm } from "@/components/form/job-form"
 
@@ -63,9 +63,6 @@ export function Hero() {
         <ul className="flex gap-x-5">
           {stats.map((item) => {
             const Icon = item.icon
-            const formattedTotal = new Intl.NumberFormat("en-US").format(
-              item.total
-            )
 
             return (
               <li key={item.suffix} className="flex-1">
@@ -86,7 +83,7 @@ export function Hero() {
                   <div>
                     <p>
                       <span className="block text-2xl font-semibold text-gray-12 dark:text-dark-gray-12">
-                        {formattedTotal}
+                        {formatNumber(item.total)}
                       </span>
                       <span className="text-gray-11 dark:text-dark-gray-11">
                         {item.suffix}
