@@ -16,3 +16,21 @@ export interface Language {
   label: string
   value: string
 }
+
+export interface Job {
+  label: string
+  contract: "Part-Time" | "Full-Time" | "Internship"
+  salary: {
+    min: number
+    max: number
+  }
+  company: Company
+}
+
+export interface Company {
+  label: string
+  city: string
+  country: string
+  jobs?: number
+  featured?: boolean
+}
