@@ -38,6 +38,8 @@ export default {
       "dark-blue": generateColorScale(radixColors.blueDark, "blue"),
       gray: generateColorScale(radixColors.gray, "gray"),
       "dark-gray": generateColorScale(radixColors.grayDark, "gray"),
+      green: generateColorScale(radixColors.green, "green"),
+      "dark-green": generateColorScale(radixColors.greenDark, "green"),
       red: generateColorScale(radixColors.red, "red"),
       "dark-red": generateColorScale(radixColors.redDark, "red"),
     },
