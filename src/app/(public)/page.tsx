@@ -1,3 +1,4 @@
+import { FeaturedJobs } from "./_components/featured-jobs"
 import { Hero } from "./_components/hero"
 import { MostPopularJobs } from "./_components/most-popular-jobs"
 import { PopularCategories } from "./_components/popular-categories"
@@ -9,6 +10,7 @@ export default function HomePage() {
       <Hero />
       <MostPopularJobs />
       <PopularCategories />
+      <FeaturedJobs />
       <TopCompanies />
     </>
   )
