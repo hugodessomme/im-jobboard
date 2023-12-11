@@ -28,6 +28,7 @@ export function MostPopularJobs() {
         </Heading>
 
         <ul className="-m-6 grid grid-flow-col grid-cols-4 grid-rows-3 gap-4">
+          {/* TODO: replace key by id */}
           {jobs.map((job) => (
             <li
               key={job.label}

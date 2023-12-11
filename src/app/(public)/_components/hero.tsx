@@ -61,6 +61,7 @@ export function Hero() {
         </div>
 
         <ul className="flex gap-x-5">
+          {/* TODO: replace key by id */}
           {stats.map((item) => {
             const Icon = item.icon
 

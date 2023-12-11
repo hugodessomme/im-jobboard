@@ -50,6 +50,7 @@ export function TopCompanies() {
         </Heading>
 
         <ul className="grid grid-cols-3 gap-4">
+          {/* TODO: replace key by id */}
           {companies.map((company) => (
             <li key={company.label}>
               <CompanyCard company={company} />
