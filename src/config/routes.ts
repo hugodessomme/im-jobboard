@@ -1,0 +1,18 @@
+export const routes = {
+  about: "/about",
+  applications: "/",
+  blog: "/blog",
+  candidate: "/candidate",
+  company: "/company",
+  contact: "/contact",
+  createJob: "/",
+  dashboard: "/dashboard",
+  faq: "/faq",
+  favorites: "/favorites",
+  findJob: "/find-job",
+  home: "/",
+  pricing: "/pricing",
+  privacyPolicy: "/privacy-policy",
+  savedJobs: "/saved",
+  termsConditions: "/terms-conditions",
+}

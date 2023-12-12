@@ -1,3 +1,5 @@
+import { type LucideIcon } from "lucide-react"
+
 export interface SiteConfig {
   lang: string
   name: string
@@ -5,6 +7,11 @@ export interface SiteConfig {
   url: string
   languages: Language[]
   headerNav: NavItem[]
+  footerNav: {
+    label: string
+    items: NavItem[]
+  }[]
+  socials: (NavItem & { icon: LucideIcon })[]
 }
 
 export interface NavItem {

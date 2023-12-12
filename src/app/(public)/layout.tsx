@@ -1,3 +1,4 @@
+import { Footer } from "@/components/layout/footer"
 import { Header } from "@/components/layout/header"
 import { SearchBar } from "@/components/layout/search-bar"
 
@@ -11,6 +12,7 @@ export default function PublicLayout({
       <Header />
       <SearchBar />
       {children}
+      <Footer />
     </>
   )
 }
