@@ -41,3 +41,11 @@ export interface Company {
   jobs?: number
   featured?: boolean
 }
+
+export interface Testimonial {
+  text: string
+  author: string
+  job: string
+  rate: number
+  imageUrl: string
+}
