@@ -32,7 +32,7 @@ const stats = [
 
 export function Hero() {
   return (
-    <section className="bg-gray-2 py-28 dark:bg-dark-gray-2">
+    <section className="bg-gray-3 py-28 dark:bg-dark-gray-3">
       <div className="container">
         <div className="mb-28 flex items-center">
           <div className="w-[520px] flex-shrink-0 space-y-5">

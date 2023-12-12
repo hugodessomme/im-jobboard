@@ -7,7 +7,7 @@ const headingVariants = cva("text-gray-12 dark:text-dark-gray-12", {
   variants: {
     size: {
       "1": "scroll-m-20 text-5xl font-bold tracking-tight",
-      "2": "scroll-m-20 text-3xl font-semibold tracking-tight",
+      "2": "scroll-m-20 text-3xl font-bold tracking-tight",
       "3": "scroll-m-20 text-2xl font-semibold tracking-tight",
       "4": "scroll-m-20 text-xl font-semibold tracking-tight",
       "5": "scroll-m-20 text-lg font-semibold tracking-tight",

@@ -2,11 +2,12 @@ import Link from "next/link"
 import { PhoneCallIcon } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 import { SelectLang } from "@/components/form/select-lang"
 
 function Header() {
   return (
-    <header className="bg-gray-2 text-sm dark:bg-dark-gray-2">
+    <header className="bg-gray-3 text-sm dark:bg-dark-gray-3">
       <div className="container flex justify-between">
         <nav>
           <ul className="flex gap-x-6">
@@ -14,7 +15,9 @@ function Header() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="block border-b-2 border-transparent px-1 py-3 outline-none hover:border-blue-8 hover:text-blue-11 focus-visible:border-blue-8 focus-visible:text-blue-11 dark:hover:border-dark-blue-8 dark:hover:text-dark-blue-11 dark:focus-visible:border-dark-blue-8 dark:focus-visible:text-dark-blue-11"
+                  className={cn(
+                    "block border-b-2 border-transparent px-1 py-3 outline-none hover:border-blue-8 hover:text-blue-11 focus-visible:border-blue-8 focus-visible:text-blue-11 dark:hover:border-dark-blue-8 dark:hover:text-dark-blue-11 dark:focus-visible:border-dark-blue-8 dark:focus-visible:text-dark-blue-11"
+                  )}
                 >
                   {item.label}
                 </Link>

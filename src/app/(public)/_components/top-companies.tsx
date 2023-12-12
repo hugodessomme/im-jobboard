@@ -43,7 +43,7 @@ const companies = [
 
 export function TopCompanies() {
   return (
-    <section className="bg-gray-1 py-28 dark:bg-dark-gray-1">
+    <section className="bg-gray-1 pb-28 pt-14 dark:bg-dark-gray-1">
       <div className="container">
         <Heading as="h2" size="2" className="mb-14">
           Top Companies
