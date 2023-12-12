@@ -1,6 +1,6 @@
 export const routes = {
   about: "/about",
-  applications: "/",
+  applications: "/dashboard/my-jobs",
   blog: "/blog",
   candidate: "/candidate",
   company: "/company",
