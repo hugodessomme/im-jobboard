@@ -19,7 +19,7 @@ const jobs: Job[] = [
   },
   {
     label: "Software Engineer",
-    contract: "Part-Time",
+    contract: "Full-Time",
     salary: { min: 20000, max: 25000 },
     company: {
       label: "Sony",
@@ -29,7 +29,7 @@ const jobs: Job[] = [
   },
   {
     label: "Data Analyst",
-    contract: "Part-Time",
+    contract: "Internship",
     salary: { min: 20000, max: 25000 },
     company: {
       label: "Google",
@@ -49,7 +49,7 @@ const jobs: Job[] = [
   },
   {
     label: "Project Manager",
-    contract: "Part-Time",
+    contract: "Full-Time",
     salary: { min: 20000, max: 25000 },
     company: {
       label: "Samsung",
@@ -59,7 +59,7 @@ const jobs: Job[] = [
   },
   {
     label: "Nurse",
-    contract: "Part-Time",
+    contract: "Internship",
     salary: { min: 20000, max: 25000 },
     company: {
       label: "L'Oréal",
@@ -79,7 +79,7 @@ const jobs: Job[] = [
   },
   {
     label: "Financial Analyst",
-    contract: "Part-Time",
+    contract: "Full-Time",
     salary: { min: 20000, max: 25000 },
     company: {
       label: "Apple",
@@ -89,7 +89,7 @@ const jobs: Job[] = [
   },
   {
     label: "IT Technician",
-    contract: "Part-Time",
+    contract: "Internship",
     salary: { min: 20000, max: 25000 },
     company: {
       label: "Sony",
@@ -109,7 +109,7 @@ const jobs: Job[] = [
   },
   {
     label: "DevOps Engineer",
-    contract: "Part-Time",
+    contract: "Full-Time",
     salary: { min: 20000, max: 25000 },
     company: {
       label: "Tesla",
@@ -119,7 +119,7 @@ const jobs: Job[] = [
   },
   {
     label: "Human Resources",
-    contract: "Part-Time",
+    contract: "Internship",
     salary: { min: 20000, max: 25000 },
     company: {
       label: "Samsung",
@@ -131,7 +131,7 @@ const jobs: Job[] = [
 
 export function FeaturedJobs() {
   return (
-    <section className="bg-gray-1 py-28 dark:bg-dark-gray-1">
+    <section className="bg-gray-1 pb-14 pt-28 dark:bg-dark-gray-1">
       <div className="container">
         <div className="mb-14 flex items-center justify-between">
           <Heading as="h2" size="2">
