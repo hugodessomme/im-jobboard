@@ -1,4 +1,4 @@
-import { Testimonial } from "@/types"
+import { type Testimonial } from "@/types"
 
 import { Heading } from "@/components/ui/heading"
 import { TestimonialCard } from "@/components/card/testimonial-card"
