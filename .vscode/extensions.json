@@ -3,7 +3,6 @@
         "esbenp.prettier-vscode",
         "yoavbls.pretty-ts-errors",
         "mikestead.dotenv",
-        "prisma.prisma",
         "bradlc.vscode-tailwindcss",
         "dbaeumer.vscode-eslint"
     ]
