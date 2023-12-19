@@ -1,47 +1,10 @@
+import { getManyCompanies } from "@/lib/fetchers/company"
 import { Heading } from "@/components/ui/heading"
 import { CompanyCard } from "@/components/card/company-card"
 
-// TODO: query real data
-const companies = [
-  {
-    label: "Apple",
-    city: "Cupertino",
-    country: "USA",
-    jobs: 3,
-  },
-  {
-    label: "Sony",
-    city: "Tokyo",
-    country: "Japan",
-    jobs: 5,
-  },
-  {
-    label: "Google",
-    city: "Mountain View",
-    country: "USA",
-    jobs: 13,
-  },
-  {
-    label: "Tesla",
-    city: "Palo Alto",
-    country: "USA",
-    jobs: 1,
-  },
-  {
-    label: "Samsung",
-    city: "Seoul",
-    country: "South Korea",
-    jobs: 27,
-  },
-  {
-    label: "L'Oréal",
-    city: "Paris",
-    country: "France",
-    jobs: 8,
-  },
-]
+export async function TopCompanies() {
+  const companies = await getManyCompanies({ limit: 6 })
 
-export function TopCompanies() {
   return (
     <section className="bg-gray-1 pb-28 pt-14 dark:bg-dark-gray-1">
       <div className="container">
@@ -50,12 +13,16 @@ export function TopCompanies() {
         </Heading>
 
         <ul className="grid grid-cols-3 gap-4">
-          {/* TODO: replace key by id */}
-          {companies.map((company) => (
-            <li key={company.label}>
-              <CompanyCard company={company} />
-            </li>
-          ))}
+          {companies.map((company) => {
+            // const totalJobs = company._count.jobs
+
+            return (
+              <li key={company.id}>
+                {/* <CompanyCard company={company} totalJobs={totalJobs} /> */}
+                <CompanyCard company={company} />
+              </li>
+            )
+          })}
         </ul>
       </div>
     </section>
