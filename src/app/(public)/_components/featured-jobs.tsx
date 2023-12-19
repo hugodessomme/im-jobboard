@@ -1,4 +1,3 @@
-import { db } from "@/db"
 import { ArrowRightIcon } from "lucide-react"
 
 import { getManyJobs } from "@/lib/fetchers/job"

@@ -56,7 +56,7 @@ async function seed() {
       contractId,
     }
   })
-  const jobs = await createManyJobs(jobsData)
+  await createManyJobs(jobsData)
   console.log("✅ jobs")
 }
 
