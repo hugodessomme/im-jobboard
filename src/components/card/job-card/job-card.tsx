@@ -1,5 +1,6 @@
+import Image from "next/image"
 import Link from "next/link"
-import { type Job } from "@/types"
+import type { JobWithCompanyWithContract } from "@/types"
 import { BookmarkIcon, MapPinIcon } from "lucide-react"
 
 import { cn, formatNumber } from "@/lib/utils"
@@ -13,7 +14,7 @@ import {
 } from "@/components/ui/tooltip"
 
 interface JobCardProps {
-  job: Job
+  job: JobWithCompanyWithContract
 }
 
 export function JobCard({ job }: JobCardProps) {
@@ -21,7 +22,10 @@ export function JobCard({ job }: JobCardProps) {
     <div className="relative rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
       <div className="mb-4">
         <Heading as="h3" size="5">
-          <Link href="/" className="hover:underline focus-visible:underline">
+          <Link
+            href={`/${job.id}`}
+            className="hover:underline focus-visible:underline"
+          >
             <span className="absolute inset-0"></span>
             {job.label}
           </Link>
@@ -29,17 +33,17 @@ export function JobCard({ job }: JobCardProps) {
         <div className="inline-flex items-center gap-x-2">
           <Badge variant="success">
             <span className="sr-only">Contract: </span>
-            {job.contract}
+            {job.contract.label}
           </Badge>
           <p className="flex items-center gap-x-1 text-sm">
             Salary:{" "}
-            {formatNumber(job.salary.min, "en-US", {
+            {formatNumber(job.salaryMin, "en-US", {
               style: "currency",
               currency: "USD",
               maximumFractionDigits: 0,
             })}{" "}
             -{" "}
-            {formatNumber(job.salary.max, "en-US", {
+            {formatNumber(job.salaryMax, "en-US", {
               style: "currency",
               currency: "USD",
               maximumFractionDigits: 0,
@@ -49,16 +53,30 @@ export function JobCard({ job }: JobCardProps) {
       </div>
 
       <div className="flex items-center gap-x-4">
-        <div className="h-12 w-12 rounded-sm bg-blue-3 dark:bg-dark-blue-3"></div>
-        <div className="flex-1">
-          <p className={cn(headingVariants({ size: "6" }))}>
-            {job.company.label}
-          </p>
-          <p className="flex items-center gap-x-1 text-sm">
-            <MapPinIcon className="h-4 w-4" />
-            {job.company.city}, {job.company.country}
-          </p>
-        </div>
+        {job.company ? (
+          <>
+            <div className="relative h-12 w-12 overflow-hidden rounded-sm bg-blue-3 dark:bg-dark-blue-3">
+              {job.company.imageUrl ? (
+                <Image
+                  src={job.company.imageUrl}
+                  alt={job.company.label}
+                  fill
+                  className="h-full w-full object-cover"
+                />
+              ) : null}
+            </div>
+            <div className="flex-1">
+              <p className={cn(headingVariants({ size: "6" }))}>
+                {job.company.label}
+              </p>
+              <p className="flex items-center gap-x-1 text-sm">
+                <MapPinIcon className="h-4 w-4" />
+                {job.company.city}, {job.company.country}
+              </p>
+            </div>
+          </>
+        ) : null}
+
         <div>
           <TooltipProvider delayDuration={300}>
             <Tooltip>
