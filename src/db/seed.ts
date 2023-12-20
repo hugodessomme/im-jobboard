@@ -10,13 +10,13 @@ import {
 } from "@/lib/actions/contract"
 import { createManyJobs, deleteManyJobs } from "@/lib/actions/job"
 
-async function seed() {
+async function main() {
   console.log("Running seed command...")
   console.time("Finished in")
 
   // Reset
-  await deleteManyContracts()
   await deleteManyJobs()
+  await deleteManyContracts()
   await deleteManyCompanies()
   console.log("✅ reset")
 
@@ -60,7 +60,7 @@ async function seed() {
   console.log("✅ jobs")
 }
 
-seed()
+main()
   .catch((e) => {
     console.error(`❌ ${e}`)
     console.error(e)
@@ -69,4 +69,5 @@ seed()
   .finally(() => {
     console.log("🌱 The seed command has been executed.")
     console.timeEnd("Finished in")
+    process.exit(0)
   })

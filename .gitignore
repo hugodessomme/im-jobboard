@@ -9,7 +9,7 @@
 /coverage
 
 # database
-local.db
+/data
 
 # next.js
 /.next/
