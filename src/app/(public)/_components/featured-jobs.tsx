@@ -6,9 +6,7 @@ import { Heading } from "@/components/ui/heading"
 import { JobCard } from "@/components/card/job-card"
 
 export async function FeaturedJobs() {
-  const jobs = await getManyJobs({
-    limit: 6,
-  })
+  const jobs = await getManyJobs({ take: 12 })
 
   return (
     <section className="bg-gray-1 pb-14 pt-28 dark:bg-dark-gray-1">

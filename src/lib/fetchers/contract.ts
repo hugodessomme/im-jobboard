@@ -1,23 +1,17 @@
-import { db } from "@/db"
-import { contract } from "@/db/schema"
-import type { Contract } from "@/types"
-import { eq } from "drizzle-orm"
-import invariant from "tiny-invariant"
+import { db } from "@/lib/db"
 
-export async function getContract(
-  id: Contract["id"]
-): Promise<Contract | undefined> {
-  invariant(id, `Missing "id" argument`)
-
-  const data = await db.query.contract.findFirst({
-    where: eq(contract.id, id),
+export async function getContract(id: string) {
+  const data = await db.contract.findUnique({
+    where: {
+      id,
+    },
   })
 
   return data
 }
 
 export async function getManyContracts() {
-  const data = await db.query.contract.findMany()
+  const data = await db.contract.findMany({})
 
   return data
 }

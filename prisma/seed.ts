@@ -1,7 +1,5 @@
-import "dotenv/config"
-
-import type { CompanyCreate, JobCreate } from "@/types"
 import { faker } from "@faker-js/faker"
+import { PrismaClient } from "@prisma/client"
 
 import { createManyCompanies, deleteManyCompanies } from "@/lib/actions/company"
 import {
@@ -9,9 +7,13 @@ import {
   deleteManyContracts,
 } from "@/lib/actions/contract"
 import { createManyJobs, deleteManyJobs } from "@/lib/actions/job"
+import { getManyCompanies } from "@/lib/fetchers/company"
+import { getManyContracts } from "@/lib/fetchers/contract"
+
+const db = new PrismaClient()
 
 async function main() {
-  console.log("Running seed command...")
+  console.log("Seeding...")
   console.time("Finished in")
 
   // Reset
@@ -21,27 +23,27 @@ async function main() {
   console.log("✅ reset")
 
   // Contracts
-  const contracts = await createManyContracts([
+  await createManyContracts([
     { label: "Full-Time" },
     { label: "Part-Time" },
     { label: "Internship" },
   ])
+  const contracts = await getManyContracts()
   console.log("✅ contracts")
 
   // Companies
-  const companiesData: CompanyCreate[] = Array.from({ length: 10 }).map(
-    (_) => ({
-      label: faker.company.name(),
-      city: faker.location.city(),
-      country: faker.location.country(),
-      imageUrl: faker.image.urlLoremFlickr({ category: "alphabet" }),
-    })
-  )
-  const companies = await createManyCompanies(companiesData)
+  const companiesData = Array.from({ length: 10 }).map((_) => ({
+    label: faker.company.name(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    imageUrl: faker.image.urlLoremFlickr({ category: "alphabet" }),
+  }))
+  await createManyCompanies(companiesData)
+  const companies = await getManyCompanies()
   console.log("✅ companies")
 
   // Jobs
-  const jobsData: JobCreate[] = Array.from({ length: 50 }).map((_) => {
+  const jobsData = Array.from({ length: 50 }).map((_) => {
     const companyId =
       companies[faker.number.int({ min: 0, max: companies.length - 1 })]!.id
     const contractId =
@@ -61,13 +63,12 @@ async function main() {
 }
 
 main()
-  .catch((e) => {
-    console.error(`❌ ${e}`)
+  .then(async () => {
+    await db.$disconnect()
+  })
+  .catch(async (e) => {
     console.error(e)
+    await db.$disconnect()
     process.exit(1)
   })
-  .finally(() => {
-    console.log("🌱 The seed command has been executed.")
-    console.timeEnd("Finished in")
-    process.exit(0)
-  })
+  .finally(() => console.timeEnd("Finished in"))

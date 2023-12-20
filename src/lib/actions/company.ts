@@ -1,30 +1,35 @@
 "use server"
 
-import { db } from "@/db"
-import { company } from "@/db/schema"
-import type { Company, CompanyCreate } from "@/types"
-import { eq } from "drizzle-orm"
-import invariant from "tiny-invariant"
+import { db } from "@/lib/db"
 
-export async function createCompany(values: CompanyCreate) {
-  const data = await db.insert(company).values(values).returning()
+export async function createCompany(values) {
+  const data = await db.company.create({
+    data: values,
+  })
+
   return data
 }
 
-export async function createManyCompanies(values: CompanyCreate[]) {
-  const data = await db.insert(company).values(values).returning()
+export async function createManyCompanies(values) {
+  const data = await db.company.createMany({
+    data: values,
+  })
+
   return data
 }
 
-export async function deleteCompany(id: Company["id"]) {
-  invariant(id, `Missing "id" argument`)
+export async function deleteCompany(id: string) {
+  const data = await db.company.delete({
+    where: {
+      id,
+    },
+  })
 
-  const data = await db.delete(company).where(eq(company.id, id)).returning()
   return data
 }
 
 export async function deleteManyCompanies() {
-  const data = await db.delete(company).returning()
+  const data = await db.company.deleteMany({})
 
   return data
 }

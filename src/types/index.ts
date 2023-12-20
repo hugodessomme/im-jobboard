@@ -1,11 +1,3 @@
-import type {
-  CompanyInsert,
-  CompanySelect,
-  ContractInsert,
-  ContractSelect,
-  JobInsert,
-  JobSelect,
-} from "@/db/schema"
 import type { LucideIcon } from "lucide-react"
 
 export interface SiteConfig {
@@ -32,27 +24,18 @@ export interface Language {
   value: string
 }
 
-export interface Job extends JobSelect {}
-export interface JobCreate extends JobInsert {}
-export interface JobWithCompany extends Job {
-  company: Company
-}
-export interface JobWithCompanyWithContract extends Job {
-  company: Company
-  contract: Contract
-}
+export interface Job {}
+export interface JobCreate {}
+export interface JobWithCompany {}
+export interface JobWithCompanyWithContract {}
 
-export interface Company extends CompanySelect {}
-export interface CompanyCreate extends CompanyInsert {}
-export interface CompanyWithJobs extends Company {
-  jobs: Job[]
-}
+export interface Company {}
+export interface CompanyCreate {}
+export interface CompanyWithJobs {}
 
-export interface Contract extends ContractSelect {}
-export interface ContractCreate extends ContractInsert {}
-export interface ContractWithJobs extends Contract {
-  jobs: Job[] | null
-}
+export interface Contract {}
+export interface ContractCreate {}
+export interface ContractWithJobs {}
 
 export interface Testimonial {
   text: string

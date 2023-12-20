@@ -1,33 +1,35 @@
 "use server"
 
-import { db } from "@/db"
-import { contract } from "@/db/schema"
-import type { Contract, ContractCreate } from "@/types"
-import { eq } from "drizzle-orm"
-import invariant from "tiny-invariant"
+import { db } from "@/lib/db"
 
-export async function createContract(values: ContractCreate) {
-  const data = await db.insert(contract).values(values).returning()
+export async function createContract(values) {
+  const data = await db.contract.create({
+    data: values,
+  })
 
   return data
 }
 
-export async function createManyContracts(values: ContractCreate[]) {
-  const data = await db.insert(contract).values(values).returning()
+export async function createManyContracts(values) {
+  const data = await db.contract.createMany({
+    data: values,
+  })
 
   return data
 }
 
-export async function deleteContract(id: Contract["id"]) {
-  invariant(id, `Missing "id" argument`)
-
-  const data = await db.delete(contract).where(eq(contract.id, id)).returning()
+export async function deleteContract(id: string) {
+  const data = await db.contract.delete({
+    where: {
+      id,
+    },
+  })
 
   return data
 }
 
 export async function deleteManyContracts() {
-  const data = await db.delete(contract).returning()
+  const data = await db.contract.deleteMany({})
 
   return data
 }

@@ -1,0 +1,43 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Company {
+    id          String  @id @default(uuid())
+    label       String  @db.VarChar(256)
+    description String?
+    city        String  @db.VarChar(256)
+    country     String  @db.VarChar(256)
+    imageUrl    String  @map("image_url") @db.VarChar
+    job         Job[]
+
+    @@map("company")
+}
+
+model Contract {
+    id    String @id @default(uuid())
+    label String @unique() @db.VarChar(256)
+    job   Job[]
+
+    @@map("contract")
+}
+
+model Job {
+    id          String    @id @default(uuid())
+    label       String    @db.VarChar(256)
+    description String
+    salaryMin   Int       @map("salary_min")
+    salaryMax   Int       @map("salary_max")
+    createdAt   DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
+    companyId   String    @map("company_id")
+    contractId  String    @map("contract_id")
+    company     Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+    contract    Contract  @relation(fields: [contractId], references: [id])
+
+    @@map("job")
+}

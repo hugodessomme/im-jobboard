@@ -1,31 +1,30 @@
 import { unstable_noStore as noStore } from "next/cache"
-import { db } from "@/db"
-import { job } from "@/db/schema"
-import type { Job, JobWithCompanyWithContract } from "@/types"
-import { eq } from "drizzle-orm"
-import invariant from "tiny-invariant"
 
-export async function getJob(id: Job["id"]): Promise<Job | undefined> {
-  invariant(id, `Missing "id" argument`)
+import { db } from "@/lib/db"
 
-  const data = await db.query.job.findFirst({
-    where: eq(job.id, id),
+export async function getJob(id: string) {
+  const data = await db.job.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      company: true,
+      contract: true,
+    },
   })
 
   return data
 }
 
-export async function getManyJobs(
-  config = {}
-): Promise<JobWithCompanyWithContract[]> {
+export async function getManyJobs(options = {}) {
   noStore()
 
-  const data = await db.query.job.findMany({
-    with: {
+  const data = await db.job.findMany({
+    include: {
       company: true,
       contract: true,
     },
-    ...config,
+    ...options,
   })
 
   return data
