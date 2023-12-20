@@ -14,12 +14,11 @@ export async function TopCompanies() {
 
         <ul className="grid grid-cols-3 gap-4">
           {companies.map((company) => {
-            // const totalJobs = company._count.jobs
+            const totalJobs = company._count.job
 
             return (
               <li key={company.id}>
-                {/* <CompanyCard company={company} totalJobs={totalJobs} /> */}
-                <CompanyCard company={company} />
+                <CompanyCard company={company} totalJobs={totalJobs} />
               </li>
             )
           })}

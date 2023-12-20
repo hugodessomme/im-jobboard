@@ -11,7 +11,16 @@ export async function getCompany(id: string) {
 }
 
 export async function getManyCompanies(options = {}) {
-  const data = await db.company.findMany({ ...options })
+  const data = await db.company.findMany({
+    include: {
+      _count: {
+        select: {
+          job: true,
+        },
+      },
+    },
+    ...options,
+  })
 
   return data
 }
