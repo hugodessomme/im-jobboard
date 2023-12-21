@@ -7,6 +7,7 @@ import {
   deleteManyContracts,
 } from "@/lib/actions/contract"
 import { createManyJobs, deleteManyJobs } from "@/lib/actions/job"
+import { createManyTestimonials } from "@/lib/actions/testimonial"
 import { getManyCompanies } from "@/lib/fetchers/company"
 import { getManyContracts } from "@/lib/fetchers/contract"
 
@@ -60,6 +61,17 @@ async function main() {
   })
   await createManyJobs(jobsData)
   console.log("✅ jobs")
+
+  // Testimonials
+  const testimonialsData = Array.from({ length: 10 }).map((_) => ({
+    description: faker.lorem.paragraph(),
+    name: faker.person.fullName(),
+    job: faker.person.jobTitle(),
+    imageUrl: faker.image.urlLoremFlickr({ category: "selfie" }),
+    rate: faker.number.int({ min: 3, max: 5 }),
+  }))
+  await createManyTestimonials(testimonialsData)
+  console.log("✅ testimonials")
 }
 
 main()

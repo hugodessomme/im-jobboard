@@ -37,10 +37,4 @@ export interface Contract {}
 export interface ContractCreate {}
 export interface ContractWithJobs {}
 
-export interface Testimonial {
-  text: string
-  author: string
-  job: string
-  rate: number
-  imageUrl: string
-}
+export interface Testimonial {}

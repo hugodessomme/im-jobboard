@@ -9,11 +9,11 @@ datasource db {
 
 model Company {
     id          String  @id @default(uuid())
-    label       String  @db.VarChar(256)
+    label       String  @db.VarChar(255)
     description String?
-    city        String  @db.VarChar(256)
-    country     String  @db.VarChar(256)
-    imageUrl    String  @map("image_url") @db.VarChar
+    city        String  @db.VarChar(255)
+    country     String  @db.VarChar(255)
+    imageUrl    String  @map("image_url") @db.VarChar(255)
     job         Job[]
 
     @@map("company")
@@ -21,7 +21,7 @@ model Company {
 
 model Contract {
     id    String @id @default(uuid())
-    label String @unique() @db.VarChar(256)
+    label String @unique() @db.VarChar(255)
     job   Job[]
 
     @@map("contract")
@@ -29,7 +29,7 @@ model Contract {
 
 model Job {
     id          String    @id @default(uuid())
-    label       String    @db.VarChar(256)
+    label       String    @db.VarChar(255)
     description String
     salaryMin   Int       @map("salary_min")
     salaryMax   Int       @map("salary_max")
@@ -40,4 +40,15 @@ model Job {
     contract    Contract  @relation(fields: [contractId], references: [id])
 
     @@map("job")
+}
+
+model Testimonial {
+    id          String @id @default(uuid())
+    description String
+    name        String @map("author_name") @db.VarChar(255)
+    job         String @map("author_job") @db.VarChar(255)
+    imageUrl    String @map("image_url") @db.VarChar(255)
+    rate        Int
+
+    @@map("testimonial")
 }

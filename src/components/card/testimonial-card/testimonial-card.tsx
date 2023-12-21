@@ -29,7 +29,7 @@ export function TestimonialCard({
       </div>
 
       <p className="before:content-['“'] after:content-['”']">
-        {testimonial.text}
+        {testimonial.description}
       </p>
 
       <div className="mt-auto flex items-center gap-x-4">
@@ -39,7 +39,7 @@ export function TestimonialCard({
         </Avatar>
         <div className="flex-1">
           <p className="font-bold text-gray-12 dark:text-dark-gray-12">
-            {testimonial.author}
+            {testimonial.name}
           </p>
           <p className="text-sm">{testimonial.job}</p>
         </div>
