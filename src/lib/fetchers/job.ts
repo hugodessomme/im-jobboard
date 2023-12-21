@@ -29,3 +29,20 @@ export async function getManyJobs(options = {}) {
 
   return data
 }
+
+export async function getManyJobsPagination(options = {}) {
+  noStore()
+
+  const data = await db.$transaction([
+    db.job.findMany({
+      include: {
+        company: true,
+        contract: true,
+      },
+      ...options,
+    }),
+    db.job.count(),
+  ])
+
+  return data
+}
