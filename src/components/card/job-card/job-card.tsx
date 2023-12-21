@@ -55,7 +55,7 @@ export function JobCard({ job }: JobCardProps) {
       <div className="flex items-center gap-x-4">
         {job.company ? (
           <>
-            <div className="relative h-12 w-12 overflow-hidden rounded-sm bg-blue-3 dark:bg-dark-blue-3">
+            <div className="relative h-12 w-12 flex-shrink-0 flex-grow-0 basis-auto overflow-hidden rounded-sm bg-blue-3 dark:bg-dark-blue-3">
               {job.company.imageUrl ? (
                 <Image
                   src={job.company.imageUrl}
