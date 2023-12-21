@@ -1,7 +1,10 @@
+import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
 
+import { routes } from "@/config/routes"
 import { getManyJobs } from "@/lib/fetchers/job"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { JobCard } from "@/components/card/job-card"
 
@@ -15,10 +18,13 @@ export async function FeaturedJobs() {
           <Heading as="h2" size="2">
             Featured Jobs
           </Heading>
-          <Button variant="outline">
+          <Link
+            href={routes.findJob}
+            className={cn(buttonVariants({ variant: "outline" }))}
+          >
             View All <span className="sr-only">Categories</span>
             <ArrowRightIcon />
-          </Button>
+          </Link>
         </div>
 
         <ul className="grid grid-cols-3 gap-4">
