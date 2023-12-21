@@ -25,9 +25,11 @@ async function main() {
 
   // Contracts
   await createManyContracts([
+    { label: "Contract Base" },
     { label: "Full-Time" },
-    { label: "Part-Time" },
     { label: "Internship" },
+    { label: "Part-Time" },
+    { label: "Temporary" },
   ])
   const contracts = await getManyContracts()
   console.log("✅ contracts")
