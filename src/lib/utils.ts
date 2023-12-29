@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx"
+import slugify from "slugify"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -17,4 +18,14 @@ export function formatNumber(
 
 export function sleep(delay: number) {
   return new Promise((resolve) => setTimeout(resolve, delay))
+}
+
+export function generateSlug(value: string) {
+  const formattedValue = slugify(value, {
+    lower: true,
+    remove: /[*+~.()'"!:@]/g,
+    strict: true,
+  })
+
+  return formattedValue
 }

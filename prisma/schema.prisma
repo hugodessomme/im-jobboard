@@ -27,6 +27,15 @@ model Contract {
     @@map("contract")
 }
 
+model Category {
+    id    String @id @default(uuid())
+    label String @unique() @db.VarChar(255)
+    slug  String @unique @db.VarChar(255)
+    job   Job[]
+
+    @@map("category")
+}
+
 model Job {
     id          String    @id @default(uuid())
     label       String    @db.VarChar(255)
@@ -36,8 +45,10 @@ model Job {
     createdAt   DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
     companyId   String    @map("company_id")
     contractId  String    @map("contract_id")
+    categoryId  String    @map("category_id")
     company     Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
     contract    Contract  @relation(fields: [contractId], references: [id])
+    category    Category  @relation(fields: [categoryId], references: [id])
 
     @@map("job")
 }
