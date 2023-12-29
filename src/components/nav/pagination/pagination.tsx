@@ -21,8 +21,8 @@ export function Pagination({
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const totalPages = Math.ceil(totalItems / itemsPerPage)
-  const pagination = generatePagination(totalPages)
   const currentPage = Number(searchParams.get("page")) || 1
+  const pagination = generatePagination(totalPages)
 
   function generatePageURL(page: number | string) {
     const params = new URLSearchParams(searchParams)
@@ -130,5 +130,5 @@ function PaginationArrow({
 }
 
 function generatePagination(totalPages: number) {
-  return Array.from({ length: totalPages }, (_, i) => i + 1)
+  return Array.from({ length: totalPages }).map((_, index) => index + 1)
 }
