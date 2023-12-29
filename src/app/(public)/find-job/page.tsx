@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation"
+
 import { routes } from "@/config/routes"
 import { getManyJobsPagination } from "@/lib/fetchers/job"
 import { jobSearchParamsSchema } from "@/lib/validations/params"
@@ -21,6 +23,11 @@ export default async function FindJobPage({ searchParams }: FindJobPageProps) {
     skip: (fallbackPage - 1) * perPageAsNumber,
     take: perPageAsNumber,
   })
+
+  // redirect to first page if user requests an invalid page
+  if (pageAsNumber > Math.ceil(totalJobs / perPageAsNumber)) {
+    redirect(routes.findJob)
+  }
 
   return (
     <>
