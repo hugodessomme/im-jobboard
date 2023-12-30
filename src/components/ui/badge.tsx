@@ -26,10 +26,14 @@ const badgeVariants = cva(
 
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLParagraphElement>,
-    VariantProps<typeof badgeVariants> {}
+    VariantProps<typeof badgeVariants> {
+  as?: "p" | "span"
+}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
-  return <p className={cn(badgeVariants({ variant }), className)} {...props} />
+function Badge({ className, variant, as: Comp = "p", ...props }: BadgeProps) {
+  return (
+    <Comp className={cn(badgeVariants({ variant }), className)} {...props} />
+  )
 }
 
 export { Badge, badgeVariants }
