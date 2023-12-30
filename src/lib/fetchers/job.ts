@@ -7,9 +7,34 @@ export async function getJob(id: string) {
     where: {
       id,
     },
-    include: {
-      company: true,
-      contract: true,
+    select: {
+      id: true,
+      label: true,
+      description: true,
+      salaryMin: true,
+      salaryMax: true,
+      createdAt: true,
+      category: {
+        select: {
+          id: true,
+          label: true,
+        },
+      },
+      company: {
+        select: {
+          id: true,
+          label: true,
+          imageUrl: true,
+          city: true,
+          country: true,
+        },
+      },
+      contract: {
+        select: {
+          id: true,
+          label: true,
+        },
+      },
     },
   })
 
@@ -20,9 +45,32 @@ export async function getManyJobs(options = {}) {
   noStore()
 
   const data = await db.job.findMany({
-    include: {
-      company: true,
-      contract: true,
+    select: {
+      id: true,
+      label: true,
+      salaryMin: true,
+      salaryMax: true,
+      category: {
+        select: {
+          id: true,
+          label: true,
+        },
+      },
+      company: {
+        select: {
+          id: true,
+          label: true,
+          imageUrl: true,
+          city: true,
+          country: true,
+        },
+      },
+      contract: {
+        select: {
+          id: true,
+          label: true,
+        },
+      },
     },
     ...options,
   })
@@ -35,9 +83,30 @@ export async function getManyJobsPagination(options = {}) {
 
   const data = await db.$transaction([
     db.job.findMany({
-      include: {
-        company: true,
-        contract: true,
+      select: {
+        id: true,
+        label: true,
+        salaryMin: true,
+        salaryMax: true,
+        category: {
+          select: {
+            id: true,
+            label: true,
+          },
+        },
+        company: {
+          select: {
+            label: true,
+            imageUrl: true,
+            city: true,
+            country: true,
+          },
+        },
+        contract: {
+          select: {
+            label: true,
+          },
+        },
       },
       ...options,
     }),
