@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { JobWithCompanyWithContract } from "@/types"
 import { BookmarkIcon, MapPinIcon } from "lucide-react"
 
+import { routes } from "@/config/routes"
 import { cn, formatNumber } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Heading, headingVariants } from "@/components/ui/heading"
@@ -23,7 +24,7 @@ export function JobCard({ job }: JobCardProps) {
       <div className="mb-4">
         <Heading as="h3" size="5">
           <Link
-            href={`/${job.id}`}
+            href={`${routes.findJob}/${job.id}`}
             className="hover:underline focus-visible:underline"
           >
             <span className="absolute inset-0"></span>
@@ -83,7 +84,7 @@ export function JobCard({ job }: JobCardProps) {
               <TooltipTrigger asChild>
                 <button
                   type="button"
-                  className="relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-6 text-gray-11 hover:bg-blue-3 hover:text-blue-11 dark:border-dark-gray-6 dark:text-dark-gray-11 dark:hover:bg-dark-blue-3 dark:hover:text-dark-blue-11"
+                  className="relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-6 text-gray-11 hover:border-blue-6 hover:bg-blue-3 hover:text-blue-11 dark:border-dark-gray-6 dark:text-dark-gray-11 dark:hover:border-dark-blue-6 dark:hover:bg-dark-blue-3 dark:hover:text-dark-blue-11"
                 >
                   <BookmarkIcon className="h-5 w-5" />
                   <span className="sr-only">
