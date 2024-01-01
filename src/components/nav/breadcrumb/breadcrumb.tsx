@@ -41,7 +41,7 @@ export function Breadcrumb({
                     <div className="flex items-center">
                       <Separator className="h-3 w-3 text-gray-11 dark:text-dark-gray-11" />
                       <Link
-                        href={segment.label}
+                        href={segment.href}
                         className="ml-1 font-semibold text-gray-12 dark:text-dark-gray-12"
                       >
                         {segment.label}
