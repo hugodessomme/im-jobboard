@@ -31,7 +31,7 @@ async function main() {
   console.log("✅ reset")
 
   // Companies
-  const companiesData = Array.from({ length: 10 }).map((_) => ({
+  const companiesData = Array.from({ length: 30 }).map((_) => ({
     label: faker.company.name(),
     city: faker.location.city(),
     country: faker.location.country(),

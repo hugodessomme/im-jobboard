@@ -24,3 +24,26 @@ export async function getManyCompanies(options = {}) {
 
   return data
 }
+
+export async function getManyCompaniesPagination(options = {}) {
+  const data = await db.$transaction([
+    db.company.findMany({
+      select: {
+        id: true,
+        label: true,
+        city: true,
+        country: true,
+        imageUrl: true,
+        _count: {
+          select: {
+            job: true,
+          },
+        },
+      },
+      ...options,
+    }),
+    db.company.count(),
+  ])
+
+  return data
+}

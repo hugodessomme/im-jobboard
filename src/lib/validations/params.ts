@@ -11,3 +11,9 @@ export const jobSearchParamsSchema = searchParamsSchema.extend({
   salary: z.string().optional(),
   remote: z.string().optional().default("false"),
 })
+
+export const companySearchParamsSchema = searchParamsSchema.extend({
+  per_page: z.string().optional().default("18"),
+  city: z.string().optional(),
+  country: z.string().optional(),
+})
