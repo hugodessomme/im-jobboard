@@ -10,7 +10,7 @@ export async function getCategory(id: string) {
   return data
 }
 
-export async function getManyCategories(options = {}) {
+export async function getAllCategories(options = {}) {
   const data = await db.category.findMany({
     include: {
       _count: {

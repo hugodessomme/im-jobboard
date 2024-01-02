@@ -1,9 +1,9 @@
-import { getManyTestimonials } from "@/lib/fetchers/testimonial"
+import { getAllTestimonials } from "@/lib/fetchers/testimonial"
 import { Heading } from "@/components/ui/heading"
 import { TestimonialCard } from "@/components/card/testimonial-card"
 
 export async function Testimonials() {
-  const testimonials = await getManyTestimonials({ take: 3 })
+  const testimonials = await getAllTestimonials({ take: 3 })
 
   return (
     <section className="bg-gray-3 py-28 dark:bg-dark-gray-3">

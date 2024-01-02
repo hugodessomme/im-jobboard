@@ -1,9 +1,9 @@
-import { getManyCompanies } from "@/lib/fetchers/company"
+import { getAllCompanies } from "@/lib/fetchers/company"
 import { Heading } from "@/components/ui/heading"
 import { CompanyCard } from "@/components/card/company-card"
 
 export async function TopCompanies() {
-  const companies = await getManyCompanies({ take: 6 })
+  const companies = await getAllCompanies({ take: 6 })
 
   return (
     <section className="bg-gray-1 pb-28 pt-14 dark:bg-dark-gray-1">

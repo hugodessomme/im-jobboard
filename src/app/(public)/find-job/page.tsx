@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 
 import { routes } from "@/config/routes"
-import { getManyJobsPagination } from "@/lib/fetchers/job"
+import { getAllJobsWithCount } from "@/lib/fetchers/job"
 import { jobSearchParamsSchema } from "@/lib/validations/params"
 import { Heading } from "@/components/ui/heading"
 import { JobCard } from "@/components/card/job-card"
@@ -19,7 +19,7 @@ export default async function FindJobPage({ searchParams }: FindJobPageProps) {
     isNaN(pageAsNumber) || pageAsNumber < 1 ? 1 : pageAsNumber
   const perPageAsNumber = Number(per_page)
 
-  const [jobs, totalJobs] = await getManyJobsPagination({
+  const [jobs, totalJobs] = await getAllJobsWithCount({
     skip: (fallbackPage - 1) * perPageAsNumber,
     take: perPageAsNumber,
   })

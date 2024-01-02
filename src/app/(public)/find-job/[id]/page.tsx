@@ -16,7 +16,7 @@ import {
 } from "lucide-react"
 
 import { routes } from "@/config/routes"
-import { getJob } from "@/lib/fetchers/job"
+import { getAllJobs, getJob } from "@/lib/fetchers/job"
 import { formatNumber } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -28,9 +28,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { JobCard } from "@/components/card/job-card"
 import { Breadcrumb } from "@/components/nav/breadcrumb"
-
-import { RelatedJobs } from "./_components/related-jobs"
 
 interface FindJobIdPageProps {
   params: {
@@ -45,6 +44,22 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
   if (!job) {
     return
   }
+
+  const jobs = await getAllJobs({
+    where: {
+      NOT: {
+        id: {
+          equals: job.id,
+        },
+      },
+      category: {
+        id: {
+          equals: job.category.id,
+        },
+      },
+    },
+    take: 6,
+  })
 
   return (
     <>
@@ -141,7 +156,7 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
           <div className="col-span-5 space-y-4">
             {/* Salary / Location / Remote */}
             <aside className="rounded-md border border-gray-6 py-4 dark:border-dark-gray-6">
-              <ul className="flex divide-x divide-gray-6 dark:divide-dark-gray-6 dark:border-dark-gray-6">
+              <ul className="flex divide-x divide-gray-6 dark:divide-dark-gray-6">
                 <li className="flex flex-1 flex-col items-center justify-center gap-y-1 px-4 text-center">
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
                     Salary (USD)
@@ -189,7 +204,7 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
               <ul className="grid grid-cols-3 gap-y-4">
                 <li className="flex flex-col">
                   <BarChartIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="uppercase">Level:</span>
+                  <span className="text-sm uppercase">Level:</span>
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
                     {/* TODO: add level to schema */}
                     Expert
@@ -197,7 +212,7 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
                 </li>
                 <li className="flex flex-col">
                   <BoxesIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="uppercase">Experience:</span>
+                  <span className="text-sm uppercase">Experience:</span>
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
                     {/* TODO: add education to schema */}
                     &gt; 5 years
@@ -205,7 +220,7 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
                 </li>
                 <li className="flex flex-col">
                   <BriefcaseIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="uppercase">Education:</span>
+                  <span className="text-sm uppercase">Education:</span>
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
                     {/* TODO: add education to schema */}
                     N/A
@@ -213,14 +228,14 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
                 </li>
                 <li className="flex flex-col">
                   <CalendarIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="uppercase">Posted:</span>
+                  <span className="text-sm uppercase">Posted:</span>
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
                     {job.createdAt?.toLocaleDateString()}
                   </span>
                 </li>
                 <li className="flex flex-col">
                   <TimerIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="uppercase">Expires:</span>
+                  <span className="text-sm uppercase">Expires:</span>
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
                     {/* TODO: add expiration date to schema */}
                     N/A
@@ -314,7 +329,21 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
 
       <Separator />
 
-      <RelatedJobs jobId={job.id} categoryId={job.category.id} />
+      <section className="bg-gray-1 py-28 dark:bg-dark-gray-1">
+        <div className="container">
+          <Heading as="h2" size="2" className="mb-14">
+            Related Jobs
+          </Heading>
+
+          <ul className="grid grid-cols-3 gap-4">
+            {jobs.map((job) => (
+              <li key={job.id}>
+                <JobCard job={job} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </>
   )
 }

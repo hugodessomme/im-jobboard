@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 
 import { routes } from "@/config/routes"
-import { getManyCompaniesPagination } from "@/lib/fetchers/company"
+import { getAllCompaniesPagination } from "@/lib/fetchers/company"
 import { companySearchParamsSchema } from "@/lib/validations/params"
 import { Heading } from "@/components/ui/heading"
 import { CompanyCard } from "@/components/card/company-card"
@@ -19,7 +19,7 @@ export default async function CompanyPage({ searchParams }: CompanyPageProps) {
     isNaN(pageAsNumber) || pageAsNumber < 1 ? 1 : pageAsNumber
   const perPageAsNumber = Number(per_page)
 
-  const [companies, totalCompanies] = await getManyCompaniesPagination({
+  const [companies, totalCompanies] = await getAllCompaniesPagination({
     skip: (fallbackPage - 1) * perPageAsNumber,
     take: perPageAsNumber,
   })

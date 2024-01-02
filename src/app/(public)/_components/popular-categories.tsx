@@ -3,19 +3,18 @@ import { ArrowRightIcon, CircleOffIcon } from "lucide-react"
 
 import { routes } from "@/config/routes"
 import { db } from "@/lib/db"
-import { getManyCategories } from "@/lib/fetchers/category"
+import { getAllCategories } from "@/lib/fetchers/category"
 import { formatNumber } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 
 export async function PopularCategories() {
-  const categories = await getManyCategories({
+  const categories = await getAllCategories({
     orderBy: {
       label: "asc",
     },
     take: 8,
   })
-  console.log({ categories })
 
   return (
     <section className="bg-gray-1 py-28 dark:bg-dark-gray-1">

@@ -2,14 +2,14 @@ import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
 
 import { routes } from "@/config/routes"
-import { getManyJobs } from "@/lib/fetchers/job"
+import { getAllJobs } from "@/lib/fetchers/job"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { JobCard } from "@/components/card/job-card"
 
 export async function FeaturedJobs() {
-  const jobs = await getManyJobs({ take: 12 })
+  const jobs = await getAllJobs({ take: 12 })
 
   return (
     <section className="bg-gray-1 pb-14 pt-28 dark:bg-dark-gray-1">

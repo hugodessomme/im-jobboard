@@ -12,7 +12,7 @@ export async function getTestimonial(id: string) {
   return data
 }
 
-export async function getManyTestimonials(options = {}) {
+export async function getAllTestimonials(options = {}) {
   noStore()
 
   const data = await db.testimonial.findMany({ ...options })

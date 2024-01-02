@@ -41,7 +41,7 @@ export async function getJob(id: string) {
   return data
 }
 
-export async function getManyJobs(options = {}) {
+export async function getAllJobs(options = {}) {
   noStore()
 
   const data = await db.job.findMany({
@@ -78,7 +78,7 @@ export async function getManyJobs(options = {}) {
   return data
 }
 
-export async function getManyJobsPagination(options = {}) {
+export async function getAllJobsWithCount(options = {}) {
   noStore()
 
   const data = await db.$transaction([
@@ -111,6 +111,95 @@ export async function getManyJobsPagination(options = {}) {
       ...options,
     }),
     db.job.count(),
+  ])
+
+  return data
+}
+
+export async function getAllJobsByCompany(id: string, options = {}) {
+  noStore()
+
+  const data = await db.job.findMany({
+    where: {
+      company: {
+        id,
+      },
+    },
+    select: {
+      id: true,
+      label: true,
+      salaryMin: true,
+      salaryMax: true,
+      category: {
+        select: {
+          id: true,
+          label: true,
+        },
+      },
+      company: {
+        select: {
+          label: true,
+          imageUrl: true,
+          city: true,
+          country: true,
+        },
+      },
+      contract: {
+        select: {
+          label: true,
+        },
+      },
+    },
+    ...options,
+  })
+
+  return data
+}
+
+export async function getAllJobsByCompanyWithCount(id: string, options = {}) {
+  noStore()
+
+  const data = await db.$transaction([
+    db.job.findMany({
+      where: {
+        company: {
+          id,
+        },
+      },
+      select: {
+        id: true,
+        label: true,
+        salaryMin: true,
+        salaryMax: true,
+        category: {
+          select: {
+            id: true,
+            label: true,
+          },
+        },
+        company: {
+          select: {
+            label: true,
+            imageUrl: true,
+            city: true,
+            country: true,
+          },
+        },
+        contract: {
+          select: {
+            label: true,
+          },
+        },
+      },
+      ...options,
+    }),
+    db.job.count({
+      where: {
+        company: {
+          id,
+        },
+      },
+    }),
   ])
 
   return data

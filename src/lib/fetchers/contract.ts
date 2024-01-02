@@ -10,7 +10,7 @@ export async function getContract(id: string) {
   return data
 }
 
-export async function getManyContracts() {
+export async function getAllContracts() {
   const data = await db.contract.findMany({})
 
   return data
