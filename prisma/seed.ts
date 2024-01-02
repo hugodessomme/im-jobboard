@@ -10,11 +10,16 @@ import {
   createManyContracts,
   deleteManyContracts,
 } from "@/lib/actions/contract"
+import {
+  createManyIndustries,
+  deleteManyIndustries,
+} from "@/lib/actions/industry"
 import { createManyJobs, deleteManyJobs } from "@/lib/actions/job"
 import { createManyTestimonials } from "@/lib/actions/testimonial"
-import { getManyCategories } from "@/lib/fetchers/category"
-import { getManyCompanies } from "@/lib/fetchers/company"
-import { getManyContracts } from "@/lib/fetchers/contract"
+import { getAllCategories } from "@/lib/fetchers/category"
+import { getAllCompanies } from "@/lib/fetchers/company"
+import { getAllContracts } from "@/lib/fetchers/contract"
+import { getAllIndustries } from "@/lib/fetchers/industry"
 import { generateSlug } from "@/lib/utils"
 
 const db = new PrismaClient()
@@ -27,18 +32,49 @@ async function main() {
   await deleteManyCompanies()
   await deleteManyContracts()
   await deleteManyCategories()
+  await deleteManyIndustries()
   await deleteManyJobs()
   console.log("✅ reset")
 
-  // Companies
-  const companiesData = Array.from({ length: 30 }).map((_) => ({
-    label: faker.company.name(),
-    city: faker.location.city(),
-    country: faker.location.country(),
-    imageUrl: faker.image.urlLoremFlickr({ category: "alphabet" }),
+  // Industries
+  const industriesData = Array.from({ length: 10 }).map(() => ({
+    label: faker.person.jobArea(),
   }))
+  await createManyIndustries(industriesData)
+  const industries = await getAllIndustries()
+  console.log("✅ industries")
+
+  // Companies
+  const companiesData = Array.from({ length: 30 }).map(() => {
+    const industryId =
+      industries[faker.number.int({ min: 0, max: industries.length - 1 })]!.id
+
+    return {
+      label: faker.company.name(),
+      city: faker.location.city(),
+      country: faker.location.country(),
+      imageUrl: faker.image.urlLoremFlickr({
+        category: "alphabet",
+        width: 56,
+        height: 56,
+      }),
+      coverImageUrl: faker.image.urlLoremFlickr({
+        category: "building",
+        width: 1400,
+        height: 232,
+      }),
+      phone: faker.phone.number(),
+      email: faker.internet.email(),
+      companyUrl: faker.internet.url(),
+      facebookUrl: faker.internet.url(),
+      twitterUrl: faker.internet.url(),
+      instagramUrl: faker.internet.url(),
+      youtubeUrl: faker.internet.url(),
+      industryId,
+    }
+  })
   await createManyCompanies(companiesData)
-  const companies = await getManyCompanies()
+  const companies = await getAllCompanies()
   console.log("✅ companies")
 
   // Contracts
@@ -49,7 +85,7 @@ async function main() {
     { label: "Part-Time" },
     { label: "Temporary" },
   ])
-  const contracts = await getManyContracts()
+  const contracts = await getAllContracts()
   console.log("✅ contracts")
 
   // Categories
@@ -61,7 +97,7 @@ async function main() {
     slug: generateSlug(label),
   }))
   await createManyCategories(categoriesData)
-  const categories = await getManyCategories()
+  const categories = await getAllCategories()
   console.log("✅ categories")
 
   // Jobs
