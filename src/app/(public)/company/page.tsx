@@ -29,8 +29,6 @@ export default async function CompanyPage({ searchParams }: CompanyPageProps) {
     redirect(routes.findJob)
   }
 
-  console.log({ per_page })
-
   return (
     <>
       <Breadcrumb
