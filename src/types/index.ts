@@ -1,27 +1,30 @@
+import type { Metadata } from "next"
 import type { LucideIcon } from "lucide-react"
 
+import type { WithRequired } from "./utils"
+
 export interface SiteConfig {
+  metadata: WithRequired<
+    Metadata,
+    "metadataBase" | "applicationName" | "title" | "description"
+  >
   lang: string
-  name: string
-  description: string
-  url: string
-  languages: Language[]
-  headerNav: NavItem[]
+  headerNav: {
+    label: string
+    href: string
+  }[]
   footerNav: {
     label: string
-    items: NavItem[]
+    items: {
+      label: string
+      href: string
+    }[]
   }[]
-  socials: (NavItem & { icon: LucideIcon })[]
-}
-
-export interface NavItem {
-  label: string
-  href: string
-}
-
-export interface Language {
-  label: string
-  value: string
+  socials: {
+    label: string
+    href: string
+    icon: LucideIcon
+  }[]
 }
 
 export interface Job {}

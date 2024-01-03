@@ -2,7 +2,6 @@ import Link from "next/link"
 import { ArrowRightIcon, CircleOffIcon } from "lucide-react"
 
 import { routes } from "@/config/routes"
-import { db } from "@/lib/db"
 import { getAllCategories } from "@/lib/fetchers/category"
 import { formatNumber } from "@/lib/utils"
 import { Button } from "@/components/ui/button"

@@ -1,6 +1,8 @@
+import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 
 import { routes } from "@/config/routes"
+import { siteConfig } from "@/config/site"
 import { getAllCompaniesPagination } from "@/lib/fetchers/company"
 import { companySearchParamsSchema } from "@/lib/validations/params"
 import { Heading } from "@/components/ui/heading"
@@ -10,6 +12,11 @@ import { Pagination } from "@/components/nav/pagination"
 
 interface CompanyPageProps {
   searchParams: Record<string, string | string[] | undefined>
+}
+
+export const metadata: Metadata = {
+  ...siteConfig.metadata,
+  title: "Company",
 }
 
 export default async function CompanyPage({ searchParams }: CompanyPageProps) {

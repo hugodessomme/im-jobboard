@@ -1,3 +1,4 @@
+import { env } from "@/env"
 import type { SiteConfig } from "@/types"
 import {
   FacebookIcon,
@@ -9,16 +10,24 @@ import {
 import { routes } from "@/config/routes"
 
 export const siteConfig: SiteConfig = {
+  metadata: {
+    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+    applicationName: "im-jobboard",
+    title: {
+      template: `%s | im-jobboard`,
+      default: "im-jobboard",
+    },
+    description:
+      "Find a job that suits your interests & skills with im-jobboard",
+    creator: "Hugo Dessomme",
+    authors: [
+      {
+        name: "Hugo Dessomme",
+        url: "github.com/hugodessomme/",
+      },
+    ],
+  },
   lang: "en",
-  name: "im-jobboard",
-  description:
-    "An open source boilerplate to quickly set up any new project with Next.js 14.",
-  url: "https://github.com/hugodessomme/im-boilerplate",
-  languages: [
-    { label: "🇺🇸 English", value: "en" },
-    { label: "🇫🇷 Français", value: "fr" },
-    { label: "🇷🇺 Русский", value: "ru" },
-  ],
   headerNav: [
     {
       label: "Home",

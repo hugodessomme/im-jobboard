@@ -4,22 +4,10 @@ import { siteConfig } from "@/config/site"
 
 import "@/styles/globals.css"
 
-import { env } from "@/env"
-
 import { fontSans } from "@/lib/fonts"
 import { Providers } from "@/components/providers"
 
-export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-  },
-}
+export const metadata: Metadata = siteConfig.metadata
 
 export default function RootLayout({
   children,

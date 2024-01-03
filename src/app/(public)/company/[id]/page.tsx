@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -14,6 +15,7 @@ import {
 } from "lucide-react"
 
 import { routes } from "@/config/routes"
+import { siteConfig } from "@/config/site"
 import { getCompany } from "@/lib/fetchers/company"
 import { getAllJobsByCompanyWithCount } from "@/lib/fetchers/job"
 import { cn } from "@/lib/utils"
@@ -26,6 +28,21 @@ import { Breadcrumb } from "@/components/nav/breadcrumb"
 interface CompanyIdPageProps {
   params: {
     id: string
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: CompanyIdPageProps): Promise<Metadata> {
+  const company = await getCompany(params.id)
+
+  if (!company) {
+    return {}
+  }
+
+  return {
+    ...siteConfig.metadata,
+    title: `${company.label} | Company`,
   }
 }
 
@@ -277,8 +294,8 @@ export default async function CompanyIdPage({ params }: CompanyIdPageProps) {
       >
         <div className="container">
           <Heading as="h2" size="2" className="mb-14">
-            Open Positions ({totalJobs}{" "}
-            <span className="sr-only">job offers</span>)
+            Open Positions (<span className="sr-only">total: </span>
+            {totalJobs})
           </Heading>
 
           <ul className="grid grid-cols-3 gap-4">

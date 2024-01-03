@@ -19,7 +19,9 @@ export function Footer() {
             <div className="col-span-4 space-y-3">
               <p className="flex shrink-0 grow-0 basis-auto items-center gap-x-2 text-dark-gray-12">
                 <BriefcaseIcon className="h-7 w-7" />
-                <span className="text-lg font-bold">im-jobboard</span>
+                <span className="text-lg font-bold">
+                  {siteConfig.metadata.applicationName}
+                </span>
               </p>
               <p>
                 Call Now:{" "}
@@ -70,7 +72,7 @@ export function Footer() {
       <div className="border-t border-dark-gray-6 py-5">
         <div className="container">
           <div className="flex justify-between">
-            <p>&copy; 2024 im-jobboard</p>
+            <p>&copy; 2024 {siteConfig.metadata.applicationName}</p>
             <ul className="flex gap-x-4">
               {siteConfig.socials.map((social) => {
                 const Icon = social.icon

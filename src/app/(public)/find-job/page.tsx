@@ -1,6 +1,8 @@
+import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 
 import { routes } from "@/config/routes"
+import { siteConfig } from "@/config/site"
 import { getAllJobsWithCount } from "@/lib/fetchers/job"
 import { jobSearchParamsSchema } from "@/lib/validations/params"
 import { Heading } from "@/components/ui/heading"
@@ -10,6 +12,11 @@ import { Pagination } from "@/components/nav/pagination"
 
 interface FindJobPageProps {
   searchParams: Record<string, string | string[] | undefined>
+}
+
+export const metadata: Metadata = {
+  ...siteConfig.metadata,
+  title: "Find Job",
 }
 
 export default async function FindJobPage({ searchParams }: FindJobPageProps) {

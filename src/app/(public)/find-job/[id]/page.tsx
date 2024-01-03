@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import {
   BarChartIcon,
@@ -16,6 +17,7 @@ import {
 } from "lucide-react"
 
 import { routes } from "@/config/routes"
+import { siteConfig } from "@/config/site"
 import { getAllJobs, getJob } from "@/lib/fetchers/job"
 import { formatNumber } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -33,6 +35,21 @@ import { Breadcrumb } from "@/components/nav/breadcrumb"
 interface FindJobIdPageProps {
   params: {
     id: string
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: FindJobIdPageProps): Promise<Metadata> {
+  const job = await getJob(params.id)
+
+  if (!job) {
+    return {}
+  }
+
+  return {
+    ...siteConfig.metadata,
+    title: `${job.label} | Find Job`,
   }
 }
 

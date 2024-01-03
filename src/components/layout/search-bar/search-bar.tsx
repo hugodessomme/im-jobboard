@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { BriefcaseIcon } from "lucide-react"
 
+import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { JobForm } from "@/components/form/job-form"
@@ -17,7 +18,7 @@ function SearchBar() {
             >
               <BriefcaseIcon className="h-7 w-7 text-blue-9 dark:text-dark-blue-9" />
               <span className="text-lg font-bold text-gray-12 dark:text-dark-gray-12">
-                im-jobboard
+                {siteConfig.metadata.applicationName}
               </span>
             </Link>
 
