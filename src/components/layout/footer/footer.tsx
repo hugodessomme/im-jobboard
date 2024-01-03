@@ -7,7 +7,6 @@ import { headingVariants } from "@/components/ui/heading"
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
@@ -77,26 +76,24 @@ export function Footer() {
                 const Icon = social.icon
                 return (
                   <li key={social.label}>
-                    <TooltipProvider delayDuration={300}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <a
-                            href={social.href}
-                            target="_blank"
-                            className="hover:text-blue-11 dark:hover:text-dark-blue-11"
-                          >
-                            <Icon className="h-5 w-5" />
-                            <span className="sr-only">{social.label}</span>
-                          </a>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p className="flex items-center gap-x-1">
-                            {social.label}
-                            <ExternalLinkIcon className="h-4 w-4" />
-                          </p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <a
+                          href={social.href}
+                          target="_blank"
+                          className="hover:text-blue-11 dark:hover:text-dark-blue-11"
+                        >
+                          <Icon className="h-5 w-5" />
+                          <span className="sr-only">{social.label}</span>
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p className="flex items-center gap-x-1">
+                          {social.label}
+                          <ExternalLinkIcon className="h-4 w-4" />
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
                   </li>
                 )
               })}

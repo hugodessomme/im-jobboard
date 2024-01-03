@@ -3,7 +3,7 @@ import { PhoneCallIcon } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { SelectLang } from "@/components/form/select-lang"
+import { SwitchMode } from "@/components/switch-mode"
 
 function Header() {
   return (
@@ -37,7 +37,7 @@ function Header() {
             </a>
           </li>
           <li>
-            <SelectLang />
+            <SwitchMode />
           </li>
         </ul>
       </div>

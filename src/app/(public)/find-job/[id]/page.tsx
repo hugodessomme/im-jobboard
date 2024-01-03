@@ -25,7 +25,6 @@ import { Separator } from "@/components/ui/separator"
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { JobCard } from "@/components/card/job-card"
@@ -101,21 +100,19 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
 
           <ul className="flex gap-x-2">
             <li>
-              <TooltipProvider delayDuration={300}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="soft" className="w-10 px-2">
-                      <BookmarkIcon className="h-5 w-5" />
-                      <span className="sr-only">
-                        Bookmark the &quot;{job.label}&quot; job offer
-                      </span>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Bookmark</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="soft" className="w-10 px-2">
+                    <BookmarkIcon className="h-5 w-5" />
+                    <span className="sr-only">
+                      Bookmark the &quot;{job.label}&quot; job offer
+                    </span>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Bookmark</p>
+                </TooltipContent>
+              </Tooltip>
             </li>
             <li>
               <Button>Apply Now</Button>

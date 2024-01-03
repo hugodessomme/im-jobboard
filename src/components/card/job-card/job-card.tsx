@@ -10,7 +10,6 @@ import { Heading, headingVariants } from "@/components/ui/heading"
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
@@ -79,24 +78,22 @@ export function JobCard({ job }: JobCardProps) {
         ) : null}
 
         <div>
-          <TooltipProvider delayDuration={300}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  type="button"
-                  className="relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-6 text-gray-11 hover:border-blue-6 hover:bg-blue-3 hover:text-blue-11 dark:border-dark-gray-6 dark:text-dark-gray-11 dark:hover:border-dark-blue-6 dark:hover:bg-dark-blue-3 dark:hover:text-dark-blue-11"
-                >
-                  <BookmarkIcon className="h-5 w-5" />
-                  <span className="sr-only">
-                    Bookmark the &quot;{job.label}&quot; job offer
-                  </span>
-                </button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Bookmark</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                className="relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-6 text-gray-11 hover:border-blue-6 hover:bg-blue-3 hover:text-blue-11 dark:border-dark-gray-6 dark:text-dark-gray-11 dark:hover:border-dark-blue-6 dark:hover:bg-dark-blue-3 dark:hover:text-dark-blue-11"
+              >
+                <BookmarkIcon className="h-5 w-5" />
+                <span className="sr-only">
+                  Bookmark the &quot;{job.label}&quot; job offer
+                </span>
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Bookmark</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
       </div>
     </div>
