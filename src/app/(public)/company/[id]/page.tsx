@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import {
   BuildingIcon,
   CalendarIcon,
@@ -37,7 +38,10 @@ export async function generateMetadata({
   const company = await getCompany(params.id)
 
   if (!company) {
-    return {}
+    return {
+      ...siteConfig.metadata,
+      title: "Not found | Company",
+    }
   }
 
   return {
@@ -51,7 +55,7 @@ export default async function CompanyIdPage({ params }: CompanyIdPageProps) {
 
   // TODO: handle no job found
   if (!company) {
-    return
+    notFound()
   }
 
   const [jobs, totalJobs] = await getAllJobsByCompanyWithCount(company.id)

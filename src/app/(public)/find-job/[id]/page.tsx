@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import { notFound } from "next/navigation"
 import {
   BarChartIcon,
   BookmarkIcon,
@@ -44,7 +45,10 @@ export async function generateMetadata({
   const job = await getJob(params.id)
 
   if (!job) {
-    return {}
+    return {
+      ...siteConfig.metadata,
+      title: "Not found | Find Job",
+    }
   }
 
   return {
@@ -58,7 +62,7 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
 
   // TODO: handle no job found
   if (!job) {
-    return
+    notFound()
   }
 
   const jobs = await getAllJobs({
