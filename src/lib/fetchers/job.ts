@@ -14,6 +14,13 @@ export async function getJob(id: string) {
       salaryMin: true,
       salaryMax: true,
       createdAt: true,
+      expiredAt: true,
+      benefits: {
+        select: {
+          id: true,
+          label: true,
+        },
+      },
       category: {
         select: {
           id: true,
@@ -30,6 +37,22 @@ export async function getJob(id: string) {
         },
       },
       contract: {
+        select: {
+          id: true,
+          label: true,
+        },
+      },
+      experience: {
+        select: {
+          label: true,
+        },
+      },
+      level: {
+        select: {
+          label: true,
+        },
+      },
+      tags: {
         select: {
           id: true,
           label: true,

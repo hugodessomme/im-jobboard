@@ -7,34 +7,12 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Company {
-    id            String   @id @default(uuid())
-    label         String   @db.VarChar(255)
-    description   String?
-    city          String   @db.VarChar(255)
-    country       String   @db.VarChar(255)
-    imageUrl      String   @map("image_url") @db.VarChar(255)
-    coverImageUrl String   @map("cover_image_url") @db.VarChar(255)
-    phone         String?  @db.VarChar(255)
-    email         String?  @db.VarChar(255)
-    companyUrl    String?  @map("company_url") @db.VarChar(255)
-    facebookUrl   String?  @map("facebook_url") @db.VarChar(255)
-    twitterUrl    String?  @map("twitter_url") @db.VarChar(255)
-    instagramUrl  String?  @map("instagram_url") @db.VarChar(255)
-    youtubeUrl    String?  @map("youtube_url") @db.VarChar(255)
-    industryId    String   @map("company_industry_id")
-    job           Job[]
-    industry      Industry @relation(fields: [industryId], references: [id])
+model Benefit {
+    id    String @id @default(uuid())
+    label String @unique() @db.VarChar(255)
+    jobs  Job[]
 
-    @@map("company")
-}
-
-model Industry {
-    id      String    @id @default(uuid())
-    label   String    @db.VarChar(255)
-    company Company[]
-
-    @@map("industry")
+    @@map("benefit")
 }
 
 model Contract {
@@ -54,19 +32,80 @@ model Category {
     @@map("category")
 }
 
+model Experience {
+    id    String @id @default(uuid())
+    label String @unique @db.VarChar(255)
+    job   Job[]
+
+    @@map("experience")
+}
+
+model Level {
+    id    String @id @default(uuid())
+    label String @unique @db.VarChar(255)
+    job   Job[]
+
+    @@map("level")
+}
+
+model Industry {
+    id      String    @id @default(uuid())
+    label   String    @db.VarChar(255)
+    company Company[]
+
+    @@map("industry")
+}
+
+model Tag {
+    id    String @id @default(uuid())
+    label String @unique() @db.VarChar(255)
+    jobs  Job[]
+
+    @@map("tag")
+}
+
+model Company {
+    id            String   @id @default(uuid())
+    label         String   @db.VarChar(255)
+    description   String?
+    city          String   @db.VarChar(255)
+    country       String   @db.VarChar(255)
+    imageUrl      String   @map("image_url") @db.VarChar(255)
+    coverImageUrl String   @map("cover_image_url") @db.VarChar(255)
+    phone         String?  @db.VarChar(255)
+    email         String?  @db.VarChar(255)
+    companyUrl    String?  @map("company_url") @db.VarChar(255)
+    facebookUrl   String?  @map("facebook_url") @db.VarChar(255)
+    twitterUrl    String?  @map("twitter_url") @db.VarChar(255)
+    instagramUrl  String?  @map("instagram_url") @db.VarChar(255)
+    youtubeUrl    String?  @map("youtube_url") @db.VarChar(255)
+    industryId    String   @map("company_industry_id")
+    job           Job[]
+    industry      Industry @relation(fields: [industryId], references: [id], onDelete: Cascade)
+
+    @@map("company")
+}
+
 model Job {
-    id          String    @id @default(uuid())
-    label       String    @db.VarChar(255)
-    description String
-    salaryMin   Int       @map("salary_min")
-    salaryMax   Int       @map("salary_max")
-    createdAt   DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
-    companyId   String    @map("company_id")
-    contractId  String    @map("contract_id")
-    categoryId  String    @map("category_id")
-    company     Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
-    contract    Contract  @relation(fields: [contractId], references: [id])
-    category    Category  @relation(fields: [categoryId], references: [id])
+    id           String     @id @default(uuid())
+    label        String     @db.VarChar(255)
+    description  String
+    salaryMin    Int        @map("salary_min")
+    salaryMax    Int        @map("salary_max")
+    createdAt    DateTime?  @default(now()) @map("created_at") @db.Timestamp(6)
+    expiredAt    DateTime   @map("expired_at") @db.Timestamp(6)
+    companyId    String     @map("company_id")
+    contractId   String     @map("contract_id")
+    categoryId   String     @map("category_id")
+    experienceId String     @map("experience_id")
+    levelId      String     @map("level_id")
+    benefits     Benefit[]
+    tags         Tag[]
+    company      Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+    contract     Contract   @relation(fields: [contractId], references: [id])
+    category     Category   @relation(fields: [categoryId], references: [id])
+    level        Level      @relation(fields: [levelId], references: [id])
+    experience   Experience @relation(fields: [experienceId], references: [id])
 
     @@map("job")
 }

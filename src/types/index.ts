@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Prisma } from "@prisma/client"
 import type { LucideIcon } from "lucide-react"
 
 import type { WithRequired } from "./utils"
@@ -28,16 +29,5 @@ export interface SiteConfig {
 }
 
 export interface Job {}
-export interface JobCreate {}
-export interface JobWithCompany {}
-export interface JobWithCompanyWithContract {}
-
-export interface Company {}
-export interface CompanyCreate {}
-export interface CompanyWithJobs {}
-
-export interface Contract {}
-export interface ContractCreate {}
-export interface ContractWithJobs {}
-
-export interface Testimonial {}
+export interface JobCreate extends Prisma.JobCreateInput {}
+export interface JobCreateMany extends Prisma.JobCreateManyInput {}

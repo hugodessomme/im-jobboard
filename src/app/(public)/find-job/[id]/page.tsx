@@ -60,7 +60,6 @@ export async function generateMetadata({
 export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
   const job = await getJob(params.id)
 
-  // TODO: handle no job found
   if (!job) {
     notFound()
   }
@@ -224,16 +223,14 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
                   <BarChartIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
                   <span className="text-sm uppercase">Level:</span>
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
-                    {/* TODO: add level to schema */}
-                    Expert
+                    {job.level.label}
                   </span>
                 </li>
                 <li className="flex flex-col">
                   <BoxesIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
                   <span className="text-sm uppercase">Experience:</span>
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
-                    {/* TODO: add education to schema */}
-                    &gt; 5 years
+                    {job.experience.label}
                   </span>
                 </li>
                 <li className="flex flex-col">
@@ -255,44 +252,46 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
                   <TimerIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
                   <span className="text-sm uppercase">Expires:</span>
                   <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
-                    {/* TODO: add expiration date to schema */}
-                    N/A
+                    {job.expiredAt.toLocaleDateString()}
                   </span>
                 </li>
               </ul>
             </aside>
 
             {/* Benefits */}
-            <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
-              <Heading as="h3" size="5" className="mb-2">
-                Benefits
-              </Heading>
+            {job.benefits.length ? (
+              <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
+                <Heading as="h3" size="5" className="mb-2">
+                  Benefits
+                </Heading>
 
-              <ul className="flex flex-wrap gap-2">
-                {/* TODO: query real data */}
-                {Array.from({ length: 10 }).map(() => (
-                  <li>
-                    <Badge variant="success">Lorem ipsum</Badge>
-                  </li>
-                ))}
-              </ul>
-            </aside>
+                <ul className="flex flex-wrap gap-2">
+                  {job.benefits.map((benefit) => (
+                    <li key={benefit.id}>
+                      <Badge variant="success">{benefit.label}</Badge>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            ) : null}
 
             {/* Tags */}
-            <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
-              <Heading as="h3" size="5" className="mb-2">
-                Tags
-              </Heading>
+            {job.tags.length ? (
+              <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
+                <Heading as="h3" size="5" className="mb-2">
+                  Tags
+                </Heading>
 
-              <ul className="flex flex-wrap gap-2">
-                {/* TODO: query real data */}
-                {Array.from({ length: 10 }).map(() => (
-                  <li>
-                    <Badge>Lorem ipsum</Badge>
-                  </li>
-                ))}
-              </ul>
-            </aside>
+                <ul className="flex flex-wrap gap-2">
+                  {/* TODO: query real data */}
+                  {job.tags.map((tag) => (
+                    <li key={tag.id}>
+                      <Badge>{tag.label}</Badge>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            ) : null}
 
             {/* Share */}
             <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
