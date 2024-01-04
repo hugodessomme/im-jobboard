@@ -23,7 +23,7 @@ export const siteConfig: SiteConfig = {
     authors: [
       {
         name: "Hugo Dessomme",
-        url: "github.com/hugodessomme/",
+        url: "https://github.com/hugodessomme/",
       },
     ],
   },
