@@ -213,85 +213,86 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
             </aside>
 
             {/* Overview */}
-            <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
-              <Heading as="h3" size="5" className="mb-2">
-                Overview
-              </Heading>
+            <aside className="space-y-4 divide-y divide-gray-6 rounded-md border border-gray-6 p-4 dark:divide-dark-gray-6 dark:border-dark-gray-6">
+              <div>
+                <Heading as="h3" size="5" className="mb-2">
+                  Overview
+                </Heading>
 
-              <ul className="grid grid-cols-3 gap-y-4">
-                <li className="flex flex-col">
-                  <BarChartIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="text-sm uppercase">Level:</span>
-                  <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
-                    {job.level.label}
-                  </span>
-                </li>
-                <li className="flex flex-col">
-                  <BoxesIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="text-sm uppercase">Experience:</span>
-                  <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
-                    {job.experience.label}
-                  </span>
-                </li>
-                <li className="flex flex-col">
-                  <BriefcaseIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="text-sm uppercase">Education:</span>
-                  <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
-                    {/* TODO: add education to schema */}
-                    N/A
-                  </span>
-                </li>
-                <li className="flex flex-col">
-                  <CalendarIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="text-sm uppercase">Posted:</span>
-                  <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
-                    {job.createdAt?.toLocaleDateString()}
-                  </span>
-                </li>
-                <li className="flex flex-col">
-                  <TimerIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
-                  <span className="text-sm uppercase">Expires:</span>
-                  <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
-                    {job.expiredAt.toLocaleDateString()}
-                  </span>
-                </li>
-              </ul>
+                <ul className="grid grid-cols-3 gap-y-4">
+                  <li className="flex flex-col">
+                    <BarChartIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
+                    <span className="text-sm uppercase">Level:</span>
+                    <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
+                      {job.level.label}
+                    </span>
+                  </li>
+                  <li className="flex flex-col">
+                    <BoxesIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
+                    <span className="text-sm uppercase">Experience:</span>
+                    <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
+                      {job.experience.label}
+                    </span>
+                  </li>
+                  <li className="flex flex-col">
+                    <BriefcaseIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
+                    <span className="text-sm uppercase">Education:</span>
+                    <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
+                      {/* TODO: add education to schema */}
+                      N/A
+                    </span>
+                  </li>
+                  <li className="flex flex-col">
+                    <CalendarIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
+                    <span className="text-sm uppercase">Posted:</span>
+                    <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
+                      {job.createdAt?.toLocaleDateString()}
+                    </span>
+                  </li>
+                  <li className="flex flex-col">
+                    <TimerIcon className="mb-3 text-blue-11 dark:text-dark-blue-11" />
+                    <span className="text-sm uppercase">Expires:</span>
+                    <span className="font-semibold text-gray-12 dark:text-dark-gray-12">
+                      {job.expiredAt.toLocaleDateString()}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Benefits */}
+              {job.benefits.length ? (
+                <div className="pt-4">
+                  <Heading as="h3" size="6" className="mb-2">
+                    Benefits
+                  </Heading>
+
+                  <ul className="flex flex-wrap gap-2">
+                    {job.benefits.map((benefit) => (
+                      <li key={benefit.id}>
+                        <Badge variant="success">{benefit.label}</Badge>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
+              {/* Tags */}
+              {job.tags.length ? (
+                <div className="pt-4">
+                  <Heading as="h3" size="6" className="mb-2">
+                    Tags
+                  </Heading>
+
+                  <ul className="flex flex-wrap gap-2">
+                    {job.tags.map((tag) => (
+                      <li key={tag.id}>
+                        <Badge>{tag.label}</Badge>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
             </aside>
-
-            {/* Benefits */}
-            {job.benefits.length ? (
-              <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
-                <Heading as="h3" size="5" className="mb-2">
-                  Benefits
-                </Heading>
-
-                <ul className="flex flex-wrap gap-2">
-                  {job.benefits.map((benefit) => (
-                    <li key={benefit.id}>
-                      <Badge variant="success">{benefit.label}</Badge>
-                    </li>
-                  ))}
-                </ul>
-              </aside>
-            ) : null}
-
-            {/* Tags */}
-            {job.tags.length ? (
-              <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
-                <Heading as="h3" size="5" className="mb-2">
-                  Tags
-                </Heading>
-
-                <ul className="flex flex-wrap gap-2">
-                  {/* TODO: query real data */}
-                  {job.tags.map((tag) => (
-                    <li key={tag.id}>
-                      <Badge>{tag.label}</Badge>
-                    </li>
-                  ))}
-                </ul>
-              </aside>
-            ) : null}
 
             {/* Share */}
             <aside className="rounded-md border border-gray-6 p-4 dark:border-dark-gray-6">
@@ -346,6 +347,7 @@ export default async function FindJobIdPage({ params }: FindJobIdPageProps) {
 
       <Separator />
 
+      {/* Related Jobs */}
       <section className="bg-gray-1 py-28 dark:bg-dark-gray-1">
         <div className="container">
           <Heading as="h2" size="2" className="mb-14">
