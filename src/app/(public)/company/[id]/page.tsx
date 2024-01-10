@@ -2,8 +2,6 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { getCompany } from "@/entities/company"
-import { getAllJobsByCompanyWithCount } from "@/entities/job"
 import {
   BuildingIcon,
   CalendarIcon,
@@ -20,6 +18,8 @@ import {
 import { app } from "@/config/app"
 import { routes } from "@/config/routes"
 import { cn } from "@/lib/utils"
+import { getCompany } from "@/entities/company/fetchers"
+import { getAllJobsByCompanyWithCount } from "@/entities/job/fetchers"
 import { buttonVariants } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"

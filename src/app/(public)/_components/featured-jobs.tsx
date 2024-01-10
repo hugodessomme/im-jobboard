@@ -1,9 +1,9 @@
 import Link from "next/link"
-import { getAllJobs } from "@/entities/job"
 import { ArrowRightIcon } from "lucide-react"
 
 import { routes } from "@/config/routes"
 import { cn } from "@/lib/utils"
+import { getAllJobs } from "@/entities/job/fetchers"
 import { buttonVariants } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { JobCard } from "@/components/card/job-card"

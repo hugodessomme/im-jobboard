@@ -1,5 +1,4 @@
-import { getAllTestimonials } from "@/entities/testimonial"
-
+import { getAllTestimonials } from "@/entities/testimonial/fetchers"
 import { Heading } from "@/components/ui/heading"
 import { TestimonialCard } from "@/components/card/testimonial-card"
 

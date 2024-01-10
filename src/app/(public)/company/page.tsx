@@ -3,10 +3,8 @@ import { redirect } from "next/navigation"
 
 import { app } from "@/config/app"
 import { routes } from "@/config/routes"
-import {
-  companySearchParamsSchema,
-  getAllCompaniesPagination,
-} from "@/entities/company"
+import { getAllCompaniesPagination } from "@/entities/company/fetchers"
+import { companySearchParamsSchema } from "@/entities/company/schemas"
 import { Heading } from "@/components/ui/heading"
 import { CompanyCard } from "@/components/card/company-card"
 import { Breadcrumb } from "@/components/nav/breadcrumb"

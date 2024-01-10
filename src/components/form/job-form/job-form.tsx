@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { SearchIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 
-import { jobFormSchema, type JobFormValues } from "@/lib/validations/job"
+import { jobFormSchema, type JobFormValues } from "@/entities/job/schemas"
 import { Button } from "@/components/ui/button"
 import {
   Form,

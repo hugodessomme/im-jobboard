@@ -3,7 +3,7 @@ import { ArrowRightIcon, CircleOffIcon } from "lucide-react"
 
 import { routes } from "@/config/routes"
 import { formatNumber } from "@/lib/utils"
-import { getAllCategories } from "@/entities/category"
+import { getAllCategories } from "@/entities/category/fetchers"
 import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 

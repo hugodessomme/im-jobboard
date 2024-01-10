@@ -1,5 +1,6 @@
 import { db } from "@/lib/db"
-import { companySelect } from "@/lib/types/company"
+
+import { companySelect } from "./types"
 
 export async function getCompany(id: string) {
   const data = await db.company.findUnique({
