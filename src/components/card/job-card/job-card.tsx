@@ -1,8 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
-import type { JobWithCompanyWithContract } from "@/types"
 import { BookmarkIcon, MapPinIcon } from "lucide-react"
 
+import type { JobWithCompanyWithContract } from "@/types/app"
 import { routes } from "@/config/routes"
 import { cn, formatNumber } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"

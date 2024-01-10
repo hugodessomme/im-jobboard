@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { BriefcaseIcon, ExternalLinkIcon } from "lucide-react"
 
-import { siteConfig } from "@/config/site"
+import { app } from "@/config/app"
 import { cn } from "@/lib/utils"
 import { headingVariants } from "@/components/ui/heading"
 import {
@@ -20,7 +20,7 @@ export function Footer() {
               <p className="flex shrink-0 grow-0 basis-auto items-center gap-x-2 text-dark-gray-12">
                 <BriefcaseIcon className="h-7 w-7" />
                 <span className="text-lg font-bold">
-                  {siteConfig.metadata.applicationName}
+                  {app.metadata.applicationName}
                 </span>
               </p>
               <p>
@@ -40,7 +40,7 @@ export function Footer() {
             </div>
             <div className="col-span-8">
               <ul className="grid grid-cols-4">
-                {siteConfig.footerNav.map((group) => (
+                {app.footerNav.map((group) => (
                   <li key={group.label}>
                     <span
                       className={cn(
@@ -72,9 +72,9 @@ export function Footer() {
       <div className="border-t border-dark-gray-6 py-5">
         <div className="container">
           <div className="flex justify-between">
-            <p>&copy; 2024 {siteConfig.metadata.applicationName}</p>
+            <p>&copy; 2024 {app.metadata.applicationName}</p>
             <ul className="flex gap-x-4">
-              {siteConfig.socials.map((social) => {
+              {app.socials.map((social) => {
                 const Icon = social.icon
                 return (
                   <li key={social.label}>

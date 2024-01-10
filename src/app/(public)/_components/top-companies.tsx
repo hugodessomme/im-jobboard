@@ -1,4 +1,5 @@
-import { getAllCompanies } from "@/lib/fetchers/company"
+import { getAllCompanies } from "@/entities/company"
+
 import { Heading } from "@/components/ui/heading"
 import { CompanyCard } from "@/components/card/company-card"
 

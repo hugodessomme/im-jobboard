@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 
+import { app } from "@/config/app"
 import { routes } from "@/config/routes"
-import { siteConfig } from "@/config/site"
-import { getAllJobsWithCount } from "@/lib/fetchers/job"
-import { jobSearchParamsSchema } from "@/lib/validations/params"
+import { getAllJobsWithCount, jobSearchParamsSchema } from "@/entities/job"
 import { Heading } from "@/components/ui/heading"
 import { JobCard } from "@/components/card/job-card"
 import { Breadcrumb } from "@/components/nav/breadcrumb"
@@ -15,7 +14,7 @@ interface FindJobPageProps {
 }
 
 export const metadata: Metadata = {
-  ...siteConfig.metadata,
+  ...app.metadata,
   title: "Find Job",
 }
 

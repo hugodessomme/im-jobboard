@@ -14,5 +14,6 @@ export const routes = {
   pricing: "/pricing",
   privacyPolicy: "/privacy-policy",
   savedJobs: "/saved",
+  support: "/",
   termsConditions: "/terms-conditions",
-}
+} as const

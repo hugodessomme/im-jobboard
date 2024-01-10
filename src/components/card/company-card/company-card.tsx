@@ -1,8 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
-import type { Company } from "@/types"
 import { MapPinIcon } from "lucide-react"
 
+import type { Company } from "@/lib/types/company"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"

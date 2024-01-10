@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { getCompany } from "@/entities/company"
+import { getAllJobsByCompanyWithCount } from "@/entities/job"
 import {
   BuildingIcon,
   CalendarIcon,
@@ -15,10 +17,8 @@ import {
   YoutubeIcon,
 } from "lucide-react"
 
+import { app } from "@/config/app"
 import { routes } from "@/config/routes"
-import { siteConfig } from "@/config/site"
-import { getCompany } from "@/lib/fetchers/company"
-import { getAllJobsByCompanyWithCount } from "@/lib/fetchers/job"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
@@ -39,13 +39,13 @@ export async function generateMetadata({
 
   if (!company) {
     return {
-      ...siteConfig.metadata,
+      ...app.metadata,
       title: "Not found | Company",
     }
   }
 
   return {
-    ...siteConfig.metadata,
+    ...app.metadata,
     title: `${company.label} | Company`,
   }
 }

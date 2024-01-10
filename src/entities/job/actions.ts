@@ -1,7 +1,6 @@
 "use server"
 
-import type { JobCreate, JobCreateMany } from "@/types"
-
+import type { JobCreate, JobCreateMany } from "@/types/app"
 import { db } from "@/lib/db"
 
 export async function createJob(values: JobCreate) {

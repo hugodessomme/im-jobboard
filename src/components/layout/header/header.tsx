@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { PhoneCallIcon } from "lucide-react"
 
-import { siteConfig } from "@/config/site"
+import { app } from "@/config/app"
 import { cn } from "@/lib/utils"
 import { SwitchMode } from "@/components/switch-mode"
 
@@ -11,7 +11,7 @@ function Header() {
       <div className="container flex justify-between">
         <nav>
           <ul className="flex gap-x-6">
-            {siteConfig.headerNav.map((item) => (
+            {app.headerNav.map((item) => (
               <li key={item.label}>
                 <Link
                   href={item.href}

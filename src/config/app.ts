@@ -1,15 +1,40 @@
+import type { Metadata } from "next"
 import { env } from "@/env"
-import type { SiteConfig } from "@/types"
 import {
   FacebookIcon,
   InstagramIcon,
   TwitterIcon,
   YoutubeIcon,
 } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
 import { routes } from "@/config/routes"
 
-export const siteConfig: SiteConfig = {
+interface App {
+  metadata: WithRequired<
+    Metadata,
+    "metadataBase" | "applicationName" | "title" | "description"
+  >
+  lang: string
+  headerNav: {
+    label: string
+    href: string
+  }[]
+  footerNav: {
+    label: string
+    items: {
+      label: string
+      href: string
+    }[]
+  }[]
+  socials: {
+    label: string
+    href: string
+    icon: LucideIcon
+  }[]
+}
+
+export const app: App = {
   metadata: {
     metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
     applicationName: "im-jobboard",
@@ -31,7 +56,7 @@ export const siteConfig: SiteConfig = {
   headerNav: [
     {
       label: "Home",
-      href: "/",
+      href: routes.home,
     },
     {
       label: "Find Job",
@@ -51,7 +76,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       label: "Support",
-      href: routes.pricing,
+      href: routes.support,
     },
   ],
   footerNav: [

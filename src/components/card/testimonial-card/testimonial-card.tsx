@@ -1,6 +1,6 @@
-import { type Testimonial } from "@/types"
 import { QuoteIcon, StarIcon } from "lucide-react"
 
+import { type Testimonial } from "@/types/app"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 

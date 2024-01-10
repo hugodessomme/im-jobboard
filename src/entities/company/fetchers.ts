@@ -1,30 +1,12 @@
 import { db } from "@/lib/db"
+import { companySelect } from "@/lib/types/company"
 
 export async function getCompany(id: string) {
   const data = await db.company.findUnique({
     where: {
       id,
     },
-    select: {
-      id: true,
-      label: true,
-      city: true,
-      country: true,
-      imageUrl: true,
-      coverImageUrl: true,
-      phone: true,
-      email: true,
-      companyUrl: true,
-      facebookUrl: true,
-      twitterUrl: true,
-      instagramUrl: true,
-      youtubeUrl: true,
-      industry: {
-        select: {
-          label: true,
-        },
-      },
-    },
+    select: companySelect,
   })
 
   return data

@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 
+import { app } from "@/config/app"
 import { routes } from "@/config/routes"
-import { siteConfig } from "@/config/site"
-import { getAllCompaniesPagination } from "@/lib/fetchers/company"
-import { companySearchParamsSchema } from "@/lib/validations/params"
+import {
+  companySearchParamsSchema,
+  getAllCompaniesPagination,
+} from "@/entities/company"
 import { Heading } from "@/components/ui/heading"
 import { CompanyCard } from "@/components/card/company-card"
 import { Breadcrumb } from "@/components/nav/breadcrumb"
@@ -15,7 +17,7 @@ interface CompanyPageProps {
 }
 
 export const metadata: Metadata = {
-  ...siteConfig.metadata,
+  ...app.metadata,
   title: "Company",
 }
 

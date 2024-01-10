@@ -1,13 +1,13 @@
 import { type Metadata } from "next"
 
-import { siteConfig } from "@/config/site"
+import { app } from "@/config/app"
 
 import "@/styles/globals.css"
 
 import { fontSans } from "@/lib/fonts"
 import { Providers } from "@/components/providers"
 
-export const metadata: Metadata = siteConfig.metadata
+export const metadata: Metadata = app.metadata
 
 export default function RootLayout({
   children,
@@ -15,11 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang={siteConfig.lang}
-      className="scroll-smooth"
-      suppressHydrationWarning
-    >
+    <html lang={app.lang} className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${fontSans.className} bg-gray-2 text-gray-11 dark:bg-dark-gray-2 dark:text-dark-gray-11`}
       >

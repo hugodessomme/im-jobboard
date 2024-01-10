@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { siteConfig } from "@/config/site"
+import { app } from "@/config/app"
 import { Separator } from "@/components/ui/separator"
 
 import { FeaturedJobs } from "./_components/featured-jobs"
@@ -12,7 +12,7 @@ import { Testimonials } from "./_components/testimonials"
 import { TopCompanies } from "./_components/top-companies"
 
 export const metadata: Metadata = {
-  ...siteConfig.metadata,
+  ...app.metadata,
   title: "Find a job that suits your interests & skills",
 }
 
